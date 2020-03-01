@@ -1,6 +1,7 @@
 import "@babel/polyfill";
 import "mutationobserver-shim";
 import Vue from "vue";
+import Vuelidate from 'vuelidate'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import "./plugins/bootstrap-vue";
@@ -9,7 +10,10 @@ import router from "./router";
 import store from "./store";
 
 Vue.config.productionTip = false;
-Vue.use(VueAxios, axios);
+Vue.use(Vuelidate)
+Vue.use(VueAxios, axios)
+
+
 
 new Vue({
   router,

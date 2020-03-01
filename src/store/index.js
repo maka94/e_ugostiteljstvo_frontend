@@ -12,10 +12,19 @@ const store = new Vuex.Store({
   state: {
    token: localStorage.getItem('token') || null,
   },
+  getters: {
+    loggedIn(state){
+      return state.token
+    }
+  },
   mutations: {
     retriveToken(state, token){
       state.token = token
-    }
+    },
+    destroyToken(state){
+      console.log(state.token)
+      state.token = null
+    },
   },
   actions: {
     retriveToken(context, credentials){
@@ -37,7 +46,43 @@ const store = new Vuex.Store({
           reject(error)
         })
       })
-    }
+    },
+    register(context, data){
+      return new Promise((resolve, reject) => {
+        axios.post('/register', {
+          first_name: data.firstname,
+          last_name: data.lastname,
+          username: data.username,
+          email: data.email,
+          password: data.password
+        })
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          toast.error(error.response.data.username);
+          reject(error)
+        })
+      })
+    },
+    destroyToken(context){
+      axios.defaults.headers.common['Authorization'] = 'Token ' + context.state.token
+      if(context.getters.loggedIn){
+        return new Promise((resolve, reject) => {
+          axios.post('/logout')
+            .then(response => {
+              localStorage.removeItem('token')
+              context.commit('destroyToken')
+              resolve(response)
+            })
+            .catch(error => {
+              localStorage.removeItem('token')
+              context.commit('destroyToken')
+              reject(error)
+            })
+        })
+      }
+    },
   },
   modules: {}
 })
