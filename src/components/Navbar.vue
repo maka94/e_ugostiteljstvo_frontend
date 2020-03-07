@@ -4,21 +4,17 @@
       <h5>
         Welcome
         <b-badge variant="dark">e-ugostiteljstvo</b-badge>
-        <button name="logout" id="logout" v-on:click="logout">Logout</button>
+        <Dropdown />
       </h5>
     </b-navbar-brand>
   </b-navbar>
 </template>
 
 <script>
+import Dropdown from './Dropdown'
 export default {
-  methods: {
-    logout(){
-      this.$store.dispatch('destroyToken')
-        .then(
-          this.$router.push({ name: 'login' })
-        )
-    }
-  }
+  components: {
+    Dropdown
+  },
 }
 </script>
