@@ -5,14 +5,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "vue-cli-service serve --open"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.4",
     "es6-promise": "^4.2.8",
+    "g": "^2.0.1",
     "izitoast": "^1.4.0",
+    "mdb-cli": "^1.1.24",
+    "mdbvue": "6.5.1",
     "package.json": "^2.0.1",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.10",
@@ -41,6 +45,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-bootstrap-vue": "^0.6.0",
+    "vue-cli-plugin-mdb": "^2.0.4",
     "vue-template-compiler": "^2.6.10"
   }
 }
