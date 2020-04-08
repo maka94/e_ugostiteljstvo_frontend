@@ -9,7 +9,18 @@
                         <form action="#" @submit.prevent="addResidence" id="new_Residence">
                         <p class="h4 text-center mb-4">Add new residence</p>
                         <div class="grey-text">
-                            <mdb-input label="Enter type" icon="home" type="text" name="type" id="type" v-model="type" required/>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mdb-icon icon="home" />Choose type:
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="browser-default custom-select" name="type" id="type" v-model="type" required>
+                                        <option value="Room">Room</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="House">House</option>
+                                    </select>
+                                </div>
+                            </div>
                             <mdb-input label="Enter address" icon="map-marker-alt" type="text" name="address" id="address" v-model="address" required/>
                             <mdb-input label="Enter town" icon="city" type="text" name="town" id="town" v-model="town" required/>
                             <mdb-input label="Enter country" icon="globe-europe" type="text" name="country" id="country" v-model="country" required/>
@@ -55,7 +66,7 @@ export default {
         mdbCol,
         mdbCard,
         mdbCardBody,
-        mdbIcon
+        mdbIcon,
     },
     data(){
         return {
@@ -96,4 +107,9 @@ export default {
     #add_residence{
         display: none;
     }
+    #type{
+        width: 103%;
+        margin-right: 80px;
+    }
+   
 </style>
