@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <Register />
-    </div>
+  <div>
+    <Register />
+  </div>
 </template>
 
 <script>
 import Register from "@/components/Register.vue";
 export default {
-    components: {
-        Register
-    }
-}
+  components: {
+    Register
+  }
+};
 </script>
 
-<style lang="stylus" scoped>
-
-</style>
+<style lang="stylus" scoped></style>
