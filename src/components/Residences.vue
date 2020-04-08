@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="text-center">Residences</h4>
-    <AddResidence/>
+    <AddResidence @update-residences="updateR" />
     <mdb-container>
       <mdb-row>
         <mdb-col xs="12" sm="6" md="4" v-for="residence in residences" :key="residence.id">
@@ -91,14 +91,14 @@ export default {
       country: "",
       price: "",
       bed_number: "",
-      description: ""
+      description: "",
     };
   },
-  mounted() {
+  /*mounted() {
     this.$store
       .dispatch("getResidences")
       .then(response => (this.residences = response));
-  },
+  },*/
   methods: {
     deleteResidence(residence) {
       this.$store
@@ -106,7 +106,7 @@ export default {
           id: residence.id
         })
         .then(
-          this.update()
+          this.updateR()
           //this.$router.push({ name: 'residences' })
         );
     },
@@ -121,6 +121,9 @@ export default {
       document.getElementById('editdescription').value = residence.description;
       this.id = residence.id
     },
+    hideEditform(){
+      document.getElementById('editForm').style.display = "none"
+    },
     editResidence() {
       this.$store.dispatch("editResidence", {
         id: this.id,
@@ -133,17 +136,28 @@ export default {
         description: document.getElementById('editdescription').value
       })
       .then(this.$router.push({ name: "residences" }))
+      this.updateR()
+      this.hideEditform()
     },
     cancelEdit() {
       document.getElementById('editForm').style.display = "none";
     },
-  }
+    async updateR(){
+      this.$store
+      .dispatch("getResidences")
+      .then(response => (this.residences = response));
+    }
+  },
+   async mounted() {
+    this.updateR();
+  },
 };
 </script>
 
 <style scoped>
 #editForm {
   display: none;
+
 }
 
 </style>

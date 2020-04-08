@@ -94,11 +94,15 @@ export default {
                 description: this.description
             })
             .then(this.$router.push({ name: "residences" }))
-            
+            this.$emit("update-residences");
+            this.hideAddResidence()
         },
         showAddResidence(){
             document.getElementById('add_residence').style.display = "block";
         },
+        hideAddResidence(){
+            document.getElementById('add_residence').style.display = "none"
+        }
     }
 }
 </script>
