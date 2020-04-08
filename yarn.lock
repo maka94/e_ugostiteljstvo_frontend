@@ -1322,9 +1322,9 @@ acorn-walk@^7.0.0:
   integrity sha512-4ufNLdC8gOf1dlOjC1nrn2NfzevyDtrDPp/DOtmoOHAFA/1pQc6bWf7oZ71qDURTODPLQ03+oFOvwxq5BvjXug==
 
 acorn@^6.0.2, acorn@^6.0.7, acorn@^6.2.1:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.0.tgz#b659d2ffbafa24baf5db1cdbb2c94a983ecd2784"
-  integrity sha512-gac8OEcQ2Li1dxIEWGZzsp2BitJxwkwcOm0zHAJLcPJaVvm58FRnk6RkuLRpU1EujipU2ZFODv2P9DLMfnV8mw==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.0:
   version "7.1.0"
@@ -5521,9 +5521,9 @@ mdb-cli@^1.1.24:
     unzipper "^0.9.7"
 
 mdbvue@6.5.1:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.5.0.tgz#5c103dc46021ef5934c50b5368763742f6b4fe8b"
-  integrity sha512-OfQhhDasYqFIFDBmU64oT8xmEp3Ng1q8YYGHccgPMXxtPmnTdi23m2+uZnVLO5rkFmv0RA7XQX679ggHmY+JjQ==
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.5.1.tgz#37a8412321bceb694f4c76f991a4334e85c642f0"
+  integrity sha512-BpVBG5bdLgwbhA3vIkiOnyv/Wy+PmIg3iuDRmQF+zR5zGEvP8u4INPTc5lNRVAXn3I2Iyin4xM2hGDSR4Ionvw==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.11.2"
     axios "^0.19.0"
