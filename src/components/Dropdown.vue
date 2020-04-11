@@ -1,8 +1,10 @@
 <template>
 <mdb-dropdown>
-    <mdb-dropdown-toggle slot="toggle" color="primary">Menu</mdb-dropdown-toggle>
+    <mdb-dropdown-toggle slot="toggle" color="primary"><mdb-icon icon="user" /></mdb-dropdown-toggle>
     <mdb-dropdown-menu>
       <mdb-dropdown-item name="residences" id="residences" v-on:click="showResidences">My Residences</mdb-dropdown-item>
+      <mdb-dropdown-item name="reservations" id="reservations" v-on:click="showReservations">My Reservations</mdb-dropdown-item>
+      <mdb-dropdown-item name="myprofile" id="myprofile" v-on:click="showProfile">My Profile</mdb-dropdown-item>
       <div class="dropdown-divider"></div>
       <mdb-dropdown-item name="logout" id="logout" v-on:click="logout">Log out</mdb-dropdown-item>
     </mdb-dropdown-menu>
@@ -21,14 +23,15 @@
 </template>
 
 <script>
-import { mdbDropdown, mdbDropdownItem, mdbDropdownMenu, mdbDropdownToggle } from 'mdbvue';
+import { mdbDropdown, mdbDropdownItem, mdbDropdownMenu, mdbDropdownToggle, mdbIcon } from 'mdbvue';
 export default {
   name: "dropdown",
   components: {
       mdbDropdown,
       mdbDropdownItem,
       mdbDropdownMenu,
-      mdbDropdownToggle
+      mdbDropdownToggle,
+      mdbIcon
     },
   methods: {
     logout() {
@@ -38,6 +41,12 @@ export default {
     },
     showResidences() {
       this.$router.push({ name: "residences" });
+    },
+    showReservations(){
+      console.log("Show reservations")
+    },
+    showProfile(){
+      this.$router.push({ name: "profile" });
     }
   }
 };

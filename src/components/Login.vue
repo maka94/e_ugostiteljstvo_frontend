@@ -55,7 +55,7 @@ export default {
         .then(this.$router.push({ name: "home" }))
         .catch(error => {
           this.$router.push({ name: "login" });
-          this.errors = Object.values(error.response.data.username);
+          throw new Error(`Problem handling something: ${error}.`);
         });
       //alert(this.username+' '+this.password);
     }

@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginView from "../views/LoginView.vue";
-import TmpView from "../views/TmpView.vue";
+import LandPageView from "../views/LandPageView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import ResidencesView from "../views/ResidencesView.vue";
+import ProfileView from "../views/ProfileView.vue";
 
 Vue.use(VueRouter);
 
@@ -11,7 +12,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: TmpView,
+    component: LandPageView,
     meta: {
       requiresAuth: true
     }
@@ -35,7 +36,18 @@ const routes = [
   {
     path: "/residences",
     name: "residences",
-    component: ResidencesView
+    component: ResidencesView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/my_profile",
+    name: "profile",
+    component: ProfileView,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
