@@ -11,17 +11,26 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: TmpView
+    component: TmpView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/login",
     name: "login",
-    component: LoginView
+    component: LoginView,
+    meta: {
+      requiresVisitor: true
+    }
   },
   {
     path: "/register",
     name: "register",
-    component: RegisterView
+    component: RegisterView,
+    meta: {
+      requiresVisitor: true
+    }
   },
   {
     path: "/residences",
