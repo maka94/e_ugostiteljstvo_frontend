@@ -9,11 +9,11 @@ axios.defaults.baseURL = "http://localhost:8000/";
 
 const store = new Vuex.Store({
   state: {
-    token: localStorage.getItem("token") || null
+    token: localStorage.getItem("access_token") || null
   },
   getters: {
     loggedIn(state) {
-      return state.token;
+      return state.token !== null;
     }
   },
   mutations: {
@@ -21,8 +21,8 @@ const store = new Vuex.Store({
       state.token = token;
     },
     destroyToken(state) {
-      console.log(state.token);
-      state.token = null;
+      state.token = null
+      location.reload()
     }
   },
   actions: {
@@ -35,7 +35,7 @@ const store = new Vuex.Store({
           })
           .then(response => {
             const token = response.data.token;
-            localStorage.setItem("token", token);
+            localStorage.setItem("access_token", token);
             context.commit("retriveToken", token);
             resolve(response);
             //console.log(response)
@@ -73,13 +73,32 @@ const store = new Vuex.Store({
           axios
             .post("/logout")
             .then(response => {
-              localStorage.removeItem("token");
               context.commit("destroyToken");
+              localStorage.removeItem("access_token");
+              console.log("destroy token commited")
               resolve(response);
             })
             .catch(error => {
-              localStorage.removeItem("token");
+              localStorage.removeItem("access_token");
               context.commit("destroyToken");
+              reject(error);
+            });
+        });
+      }
+    },
+    getProfile(context){
+      axios.defaults.headers.common["Authorization"] =
+        "Token " + context.state.token;
+      console.log(context.state.token);
+      if (context.getters.loggedIn) {
+        return new Promise((resolve, reject) => {
+          axios
+            .get("/profile")
+            .then(response => {
+              resolve(response.data);
+            })
+            .catch(error => {
+              toast.error(error.response.data.detail);
               reject(error);
             });
         });

@@ -9,17 +9,6 @@
       <mdb-dropdown-item name="logout" id="logout" v-on:click="logout">Log out</mdb-dropdown-item>
     </mdb-dropdown-menu>
   </mdb-dropdown>
-  <!--<b-dropdown id="dropdown" class="m-md-2">
-    <b-dropdown-item-btn
-      name="residences"
-      id="residences"
-      v-on:click="showResidences"
-      >My Residences</b-dropdown-item-btn
-    >
-    <b-dropdown-item-btn name="logout" id="logout" v-on:click="logout"
-      >Logout</b-dropdown-item-btn
-    >
-  </b-dropdown>-->
 </template>
 
 <script>
