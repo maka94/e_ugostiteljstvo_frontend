@@ -1,16 +1,23 @@
 <template>
-  <div class="bg" overlay = "black-strong">
-    <div class="overlay"></div>
-    <Navbar />
-    <Residences />
-  </div>
+
+  
+  <mdb-container fluid>
+    <div class="bg" overlay="black-strong">
+  <div class="overlay"></div>
+   </div>
+      <Navbar />
+      <Residences />
+  </mdb-container>
+  
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Residences from "@/components/Residences.vue";
+import { mdbContainer } from 'mdbvue'
 export default {
   components: {
+    mdbContainer,
     Navbar,
     Residences
   }
@@ -18,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-  .bg {
+ .bg {
     background-image: url("../assets/land_page_background.jpg");
     height: 100%;
     background-position: center;
