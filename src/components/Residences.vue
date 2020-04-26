@@ -5,7 +5,7 @@
     <mdb-container>
       <mdb-row>
         <mdb-col xs="12" sm="6" md="4" v-for="residence in residences" :key="residence.id">
-          <mdb-card-group deck>
+          <mdb-card-group deck id="residences_cards">
             <mdb-card>
               <mdb-view hover>
 						    <a href="#!">
@@ -94,11 +94,9 @@ export default {
       description: "",
     };
   },
-  /*mounted() {
-    this.$store
-      .dispatch("getResidences")
-      .then(response => (this.residences = response));
-  },*/
+  mounted() {
+    this.updateR();
+  },
   methods: {
     deleteResidence(residence) {
       this.$store
@@ -142,15 +140,13 @@ export default {
     cancelEdit() {
       document.getElementById('editForm').style.display = "none";
     },
-    async updateR(){
+    updateR(){
       this.$store
       .dispatch("getResidences")
       .then(response => (this.residences = response));
     }
   },
-   async mounted() {
-    this.updateR();
-  },
+  
 };
 </script>
 
@@ -158,6 +154,16 @@ export default {
 #editForm {
   display: none;
 
+}
+
+#residences_cards{
+  margin-top: 15px;
+}
+
+h4 {
+  margin-top: 40px;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: lighter;
 }
 
 </style>
