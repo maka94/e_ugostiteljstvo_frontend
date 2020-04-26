@@ -1,13 +1,13 @@
 <template>
     <div>
-        <mdb-container fluid>
+        <mdb-container>
             <mdb-row>
                 <mdb-col col="4"></mdb-col>
                 <mdb-col col="4">
                 <mdb-card id="add_residence">
                     <mdb-card-body>
                         <form action="#" @submit.prevent="addResidence" id="new_Residence">
-                        <p class="h4 text-center mb-4">Add new residence</p>
+                        <p class="h4 text-center mb-4" id="add_title">Add new residence</p>
                         <div class="grey-text">
                             <div class="row">
                                 <div class="col-md-4">
@@ -110,10 +110,19 @@ export default {
 <style>
     #add_residence{
         display: none;
+        margin-top: 50px;
+        z-index: 1;
     }
     #type{
         width: 103%;
         margin-right: 80px;
     }
+
+    #add_new{
+        margin-top: 20px;
+        margin-left: 80%;
+        width: 50%;
+    }
+    
    
 </style>
