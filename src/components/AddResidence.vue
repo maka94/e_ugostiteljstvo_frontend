@@ -4,7 +4,7 @@
             <mdb-row>
                 <mdb-col col="4"></mdb-col>
                 <mdb-col col="4">
-                <mdb-card id="add_residence">
+                <mdb-card id="add_residence" v-show="visible">
                     <mdb-card-body>
                         <form action="#" @submit.prevent="addResidence" id="new_Residence">
                         <p class="h4 text-center mb-4" id="add_title">Add new residence</p>
@@ -76,7 +76,8 @@ export default {
             country: "",
             price: "",
             bed_number: 0,
-            description: ""
+            description: "",
+            visible: false
         };
     },
     methods:{
@@ -98,10 +99,10 @@ export default {
             this.hideAddResidence()
         },
         showAddResidence(){
-            document.getElementById('add_residence').style.display = "block";
+            this.visible = true
         },
         hideAddResidence(){
-            document.getElementById('add_residence').style.display = "none"
+            this.visible = false
         }
     }
 }
@@ -109,7 +110,6 @@ export default {
 
 <style>
     #add_residence{
-        display: none;
         margin-top: 50px;
         z-index: 1;
     }
