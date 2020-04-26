@@ -1,6 +1,6 @@
 <template>
-<mdb-dropdown>
-    <mdb-dropdown-toggle slot="toggle" color="primary"><mdb-icon icon="user" /></mdb-dropdown-toggle>
+<mdb-dropdown btn-group dropleft style="margin-left: 200px; z-index: 999;">
+    <mdb-dropdown-toggle id="dropdown" slot="toggle" color="secondary"><mdb-icon icon="user"/></mdb-dropdown-toggle>
     <mdb-dropdown-menu>
       <mdb-dropdown-item name="residences" id="residences" v-on:click="showResidences">My Residences</mdb-dropdown-item>
       <mdb-dropdown-item name="reservations" id="reservations" v-on:click="showReservations">My Reservations</mdb-dropdown-item>
@@ -40,3 +40,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#dropdown:hover{
+  opacity: 1.0;
+}
+</style>

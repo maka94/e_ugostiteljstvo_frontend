@@ -1,14 +1,16 @@
 <template>
- <mdb-navbar dark color="primary" style="margin-bottom: -60px; z-index: 1" transparent>
+<div>
+  <mdb-navbar color="rgba-white-light"  light id="nav">
     <mdb-navbar-brand >
       <img src="../assets/logo.png" alt="" v-on:click ="home">
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
-      <mdb-navbar-nav>
+      <mdb-navbar-nav nav right>
         <Dropdown />
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
+</div>
 </template>
 
 <script>
@@ -32,5 +34,14 @@ export default {
 </script>
 
 <style scoped>
+
+#nav{
+  opacity: 0.7;
+  height: 85px;
+  z-index: 1;
+}
+#nav:hover{
+  opacity: 1.0;
+}
 
 </style>
