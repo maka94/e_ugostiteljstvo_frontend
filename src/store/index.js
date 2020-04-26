@@ -107,11 +107,26 @@ const store = new Vuex.Store({
     getResidences(context) {
       axios.defaults.headers.common["Authorization"] =
         "Token " + context.state.token;
-      console.log(context.state.token);
+      //console.log(context.state.token);
       if (context.getters.loggedIn) {
         return new Promise((resolve, reject) => {
           axios
             .get("/residences/")
+            .then(response => {
+              resolve(response.data);
+            })
+            .catch(error => {
+              toast.error(error.response.data.detail);
+              reject(error);
+            });
+        });
+      }
+    },
+    getAllResidences(context) {
+      if (context.getters.loggedIn) {
+        return new Promise((resolve, reject) => {
+          axios
+            .get("/residences/all")
             .then(response => {
               resolve(response.data);
             })
