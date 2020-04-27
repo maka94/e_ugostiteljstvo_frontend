@@ -18,6 +18,12 @@
                   </div>
                 </form>
               </mdb-card-body>
+              <mdb-card-footer style="height: 20%">
+                <div class="text-center" style="height: 40px; width: 200px; margin-left: 90px; margin-bottom: 15px">
+                  <p style="font-size: 12px; margin-top: 5px">Don't have an account? </p>
+                  <a href="#" v-on:click="register" style="font-size: 14px;">Register</a>
+                </div>
+              </mdb-card-footer>
           </mdb-card>
         </mdb-col>
         <mdb-col col="4"></mdb-col>
@@ -27,7 +33,7 @@
 </template>
 
 <script>
-import { mdbContainer, mdbRow, mdbCol, mdbCard, mdbCardBody, mdbInput, mdbBtn } from 'mdbvue';
+import { mdbContainer, mdbRow, mdbCol, mdbCard, mdbCardBody, mdbInput, mdbBtn, mdbCardFooter } from 'mdbvue';
 import toast from "@/assets/js/services/toast";
 export default {
   name: "login",
@@ -38,7 +44,8 @@ export default {
       mdbRow,
       mdbCol,
       mdbCard,
-      mdbCardBody
+      mdbCardBody,
+      mdbCardFooter
     },
   data() {
     return {
@@ -63,6 +70,9 @@ export default {
         if(!this.username) toast.error("Username is required!")
         if(!this.password) toast.error("Password is required.")
       }
+    },
+    register(){
+      this.$router.push({ name: "register" })
     }
   }
 };
