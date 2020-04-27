@@ -21,7 +21,7 @@
               <mdb-card-footer style="height: 20%">
                 <div class="text-center" style="height: 40px; width: 200px; margin-left: 90px; margin-bottom: 15px">
                   <p style="font-size: 12px; margin-top: 5px">Don't have an account? </p>
-                  <a href="#" v-on:click="register" style="font-size: 14px;">Register</a>
+                  <a href="" v-on:click="register" style="font-size: 14px;">Register</a>
                 </div>
               </mdb-card-footer>
           </mdb-card>
