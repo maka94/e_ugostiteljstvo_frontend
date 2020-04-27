@@ -2,19 +2,42 @@
   <div fluid>
     <div class="bg" overlay="black-strong">
     <div class="overlay"></div>
+    </div>
     <Navbar />
-    <LandPage />
+    <div id="search">
+      <Search @filter-residences="filter"/>
+    </div>
+    <div id="res">
+      <AllResidences :residences="residences" />
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import LandPage from "@/components/LandPage.vue"
+import Navbar from "@/components/Navbar.vue"
+import Search from "@/components/Search.vue"
+import AllResidences from "@/components/AllResidences.vue"
+
 export default {
   components: {
     Navbar,
-    LandPage
+    Search,
+    AllResidences
+  },
+  data() {
+    return {
+      residences: []
+    }
+  },
+  mounted() {
+    this.$store
+      .dispatch("getAllResidences")
+      .then(response => (this.residences = response));
+  },
+  methods: {
+    filter: function(residences) {
+      this.residences = residences
+    }
   }
 };
 </script>
@@ -44,5 +67,18 @@ export default {
     bottom: 0;
     opacity: .2;
     background: #8585ad;
+}
+
+#search {
+  margin-top: 15px;
+}
+
+#res {
+  margin-top: 15px;
+  border-spacing: 5px;
+  height: 1400px;
+  width: 1140px;
+  margin-left: 180px;
+  padding: 2px;
 }
 </style>
