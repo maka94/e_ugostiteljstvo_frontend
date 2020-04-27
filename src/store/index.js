@@ -199,6 +199,33 @@ const store = new Vuex.Store({
           });
       });
     },
+    searchResidences(context, data){
+      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      const axiosParams = new URLSearchParams()
+      axiosParams.append('date_from', data.date_from)
+      axiosParams.append('date_to', data.date_to)
+      axiosParams.append('country', data.country)
+      axiosParams.append('town', data.town)
+      axiosParams.append('address', data.address)
+      axiosParams.append('price_from', data.price_from)
+      axiosParams.append('price_to', data.price_to)
+      axiosParams.append('type', data.type)
+      axiosParams.append('bed_num', data.bed_num)
+
+      return new Promise((resolve, reject) => {
+        axios
+          .get("/residences/search", {
+            params: axiosParams
+          })
+          .then(response => {
+            resolve(response.data)
+          })
+          .catch(error => {
+            toast.error(error.response.data);
+            reject(error);
+          });
+      });
+    }
   },
   modules: {}
 });
