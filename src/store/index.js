@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import toast from "@/assets/js/services/toast";
-//import VueAxios from 'vue-axios';
 
 Vue.use(Vuex);
 axios.defaults.baseURL = "http://localhost:8000/";
@@ -14,7 +13,7 @@ const store = new Vuex.Store({
   getters: {
     loggedIn(state) {
       return state.token !== null;
-    }
+    },
   },
   mutations: {
     retriveToken(state, token) {
@@ -23,7 +22,7 @@ const store = new Vuex.Store({
     destroyToken(state) {
       state.token = null
       location.reload()
-    }
+    },
   },
   actions: {
     retriveToken(context, credentials) {

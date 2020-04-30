@@ -15,7 +15,9 @@
                                 <mdb-card-title> {{residence.type}} </mdb-card-title>
                                 <mdb-card-text> {{residence.town}}, {{residence.country}} </mdb-card-text>
                                 <mdb-row>
-                                    <mdb-col xs="12" sm="6" md="4"></mdb-col>
+                                    <mdb-col xs="12" sm="6" md="4">
+                                        
+                                    </mdb-col>
                                     <mdb-col>
                                         <mdb-btn size="lg" v-on:click="view(residence)" gradient="tempting-azure" rounded><mdb-icon icon="eye"/></mdb-btn>
                                     </mdb-col>

@@ -1,30 +1,73 @@
 <template>
-
-  
   <mdb-container fluid>
     <div class="bg" overlay="black-strong">
-  <div class="overlay"></div>
+      <div class="overlay"></div>
    </div>
       <Navbar />
-      <Residences />
+      <mdb-row>
+        <mdb-col col="4"></mdb-col>
+        <mdb-col col="4">
+          <h4 class="text-center" style="margin-top: 10px">My Residences</h4>
+        </mdb-col>
+        <mdb-col col="4"></mdb-col>
+      </mdb-row>
+      <mdb-row>
+        <mdb-col col="4"></mdb-col>
+        <mdb-col col="4"></mdb-col>
+        <mdb-col col="4">
+          <mdb-btn gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
+        </mdb-col>
+      </mdb-row>
+      <AddResidence v-show="visible"  @cancel-add="cancel" @hide-add="cancel"/> <!-- @update-residences="updateR" -->
+      <Residences :myResidences="myResidences" :residences="residences" @show-form="showAddResidence"/>
   </mdb-container>
-  
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import Residences from "@/components/Residences.vue";
-import { mdbContainer } from 'mdbvue'
+import AddResidence from "@/components/AddResidence.vue";
+import Residences from "@/components/Residences.vue"
+import { mdbContainer, mdbIcon, mdbBtn, mdbRow, mdbCol } from 'mdbvue'
 export default {
   components: {
     mdbContainer,
     Navbar,
-    Residences
+    AddResidence,
+    Residences,
+    mdbIcon,
+    mdbBtn,
+    mdbRow,
+    mdbCol
+  },
+  data() {
+    return {
+      myResidences: true, //za dugmice 
+      visible: false,
+      residences: []
+    }
+  },
+  mounted() {
+    this.$store
+      .dispatch("getResidences")
+      .then(response => (this.residences = response));
+  },
+  methods: {
+    showAddResidence(){
+      this.visible = true
+    },
+    cancel(){
+      this.visible = false
+    },
   }
 };
 </script>
 
 <style scoped>
+   #add_new{
+    right: 200px;
+    width: 40%;
+    
+    }
  .bg {
     background-image: url("../assets/land_page_background.jpg");
     height: 100%;
