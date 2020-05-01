@@ -125,7 +125,7 @@ export default {
             })
             .then(this.$router.push({ name: "residences" }))
             eventBus.$emit("update-residences", true)
-            this.$emit("hide-add")
+            this.$emit("cancel-add")
             }else{
                 this.$store.dispatch("editResidence", {
                 id: this.id,
@@ -140,12 +140,7 @@ export default {
             })
             .then(this.$router.push({ name: "residences" }))
                 eventBus.$emit("update-residences", true)
-                this.$emit("hide-add")
-                document.getElementById('price').value = "";
-                document.getElementById('bed_number').value = "";
-                document.getElementById('description').value = "";
-                //this.id = ""
-                this.edit = false
+                this.$emit("cancel-add")
             }
         },
       
