@@ -7,14 +7,14 @@
         <mdb-col col="4">
           <mdb-card id="login">
             <mdb-card-body>
-                <form action="#" @submit.prevent="login" id="login_form">
+                <form action="#" id="login_form">
                   <p class="h4 text-center mb-4">Log in</p>
                   <div class="grey-text">
                     <mdb-input label="Your username" icon="user" type="text" name="username" id="username" v-model="username"/>
                     <mdb-input label="Your password" icon="lock" type="password" name="password" id="password" v-model="password" />
                   </div>
                   <div class="text-center">
-                    <mdb-btn gradient="mean-fruit" type="submit" class="rounded">Login</mdb-btn>
+                    <mdb-btn gradient="mean-fruit" type="button" v-on:click="login" class="rounded">Login</mdb-btn>
                   </div>
                 </form>
               </mdb-card-body>
@@ -61,9 +61,13 @@ export default {
           username: this.username,
           password: this.password
         })
-        .then(this.$router.push({ name: "home" }))
+        .then(response => {
+          console.log("after retrieve token. redirecting to home")
+          console.log(response);
+          this.$router.push({ name: "home" })
+        })
         .catch(error => {
-          this.$router.push({ name: "login" });
+          //this.$router.push({ name: "login" });
           throw new Error(`Problem handling something: ${error}.`);
         });
       } else {
