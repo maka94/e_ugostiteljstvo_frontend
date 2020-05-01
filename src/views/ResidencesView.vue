@@ -18,7 +18,7 @@
           <mdb-btn gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
         </mdb-col>
       </mdb-row>
-      <AddResidence v-show="visible"  @cancel-add="cancel" @hide-add="cancel"/> <!-- @update-residences="updateR" -->
+      <AddResidence v-show="visible"  @cancel-add="cancel" /> <!-- @update-residences="updateR" -->
       <Residences :myResidences="myResidences" :residences="residences" @show-form="showAddResidence"/>
   </mdb-container>
 </template>
