@@ -61,7 +61,11 @@ export default {
         }
     },
     methods: {
-        
+        updateR(){
+        this.$store
+        .dispatch("getAllResidences")
+        .then(response => (this.residences = response));
+    }
     }
 }
 </script>
