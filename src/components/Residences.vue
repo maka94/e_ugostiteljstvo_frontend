@@ -42,11 +42,9 @@
 <script>
 import { mdbContainer, mdbRow, mdbCol, mdbCardGroup, mdbCard, mdbView, mdbCardImage, mdbMask, mdbCardBody, mdbCardTitle, mdbCardText, mdbBtn, mdbIcon, /*mdbInput*/ } from 'mdbvue';
 import {eventBus} from "../main";
-//import EditResidence from "@/components/EditResidence.vue"
 export default {
   name: "residences",
   components: {
-      //EditResidence,
       mdbContainer,
       mdbRow,
       mdbCol,
@@ -63,6 +61,7 @@ export default {
 		},
   data() {
     return {
+      //residences: [],
       id: "",
       type: "",
       address: "",
@@ -72,7 +71,6 @@ export default {
       bed_number: "",
       description: "",
       residence: null,
-      visible: false,
       update: false
     };
   },
