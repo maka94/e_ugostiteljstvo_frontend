@@ -2,11 +2,6 @@
     <div>
         <div class="container">
             <div class="row" id="search">
-
-                <div class="col-md-1">
-                    
-                    
-                </div>
                 <div class="col-md-12" id="filters">
                     <mdb-container fluid style="width: 120%">
                         <mdb-row>
@@ -31,13 +26,11 @@
                             </mdb-col>
                             <mdb-col col="2">
                                 <mdb-input label="Price to" icon="dollar-sign" type="number" v-model="price_to"></mdb-input>
-                                <mdb-btn style=" height: 25%; margin-left: 15px; width: 100%; text: center" icon="search" v-on:click="search">Search</mdb-btn>
+                                <mdb-btn  icon="search" v-on:click="search">Search</mdb-btn>
                             </mdb-col>
                             
                         </mdb-row>
                     </mdb-container>
-                </div>
-                <div class="col-md-1">
                 </div>
             </div>
             <div class="row"></div>
