@@ -54,7 +54,6 @@ export default {
             bed_num: "",
             price_from: "",
             price_to: "",
-            residences: []
         }
     },
     components: {
@@ -78,11 +77,6 @@ export default {
                     price_from: this.price_from,
                     price_to: this.price_to
                 })
-                .then(response => {
-                    this.residences = response
-                    console.log("Residences: "+this.residences.length)
-                    this.$emit("filter-residences", this.residences)
-                });
             } else {
                 if(!this.date_from) toast.error("Date from is required field!")
                 if(!this.date_to) toast.error("Date to is required field!")
