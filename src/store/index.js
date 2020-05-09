@@ -248,6 +248,7 @@ const store = new Vuex.Store({
             params: axiosParams
           })
           .then(response => {
+            context.commit("setResidences", response.data)
             resolve(response.data)
           })
           .catch(error => {
