@@ -75,10 +75,6 @@ export default {
 
 #res {
   margin-top: 15px;
-  border-spacing: 5px;
-  height: 1400px;
-  width: 1140px;
-  margin-left: 180px;
   padding: 2px;
 }
 </style>
