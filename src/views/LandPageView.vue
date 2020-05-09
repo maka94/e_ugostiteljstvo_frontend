@@ -5,38 +5,28 @@
     </div>
     <Navbar />
     <div id="search">
-      <Search @filter-residences="filter"/>
+      <Search /> 
     </div>
     <div id="res">
-      <AllResidences :residences="residences" />
+      <Residences :allResidences="allResidences"  /> 
     </div>
+    
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue"
 import Search from "@/components/Search.vue"
-import AllResidences from "@/components/AllResidences.vue"
-
+import Residences from "@/components/Residences.vue"
 export default {
   components: {
     Navbar,
     Search,
-    AllResidences
+    Residences,
   },
   data() {
     return {
-      residences: []
-    }
-  },
-  mounted() {
-    this.$store
-      .dispatch("getAllResidences")
-      .then(response => (this.residences = response));
-  },
-  methods: {
-    filter: function(residences) {
-      this.residences = residences
+      allResidences: true, //za dugmice
     }
   }
 };
