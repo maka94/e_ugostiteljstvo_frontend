@@ -2,8 +2,7 @@
   <div>
     <mdb-container>
       <mdb-row>
-        <mdb-col xs="12" sm="6" md="4" v-for="residence in residences" :key="residence.id">
-          
+        <mdb-col xs="12" md="4" v-for="residence in residences" :key="residence.id">
           <mdb-card-group deck id="residences_cards">
             <mdb-card>
               <mdb-view hover>
@@ -32,7 +31,6 @@
         </mdb-col>
       </mdb-row>
       <mdb-row>
-        <!--<EditResidence />-->
       </mdb-row>
     </mdb-container>
      
@@ -41,7 +39,7 @@
 
 <script>
 import { mdbContainer, mdbRow, mdbCol, mdbCardGroup, mdbCard, mdbView, mdbCardImage, mdbMask, mdbCardBody, mdbCardTitle, mdbCardText, mdbBtn, mdbIcon, /*mdbInput*/ } from 'mdbvue';
-import {eventBus} from "../main";
+//import {eventBus} from "../main";
 export default {
   name: "residences",
   components: {
@@ -61,7 +59,6 @@ export default {
 		},
   data() {
     return {
-      //residences: [],
       id: "",
       type: "",
       address: "",
@@ -70,15 +67,21 @@ export default {
       price: "",
       bed_number: "",
       description: "",
-      residence: null,
-      update: false
     };
   },
   created() {
-    eventBus.$on("update-residences", (update) => {
-    this.update = update
-    this.updateR()
-    });
+    if(this.allResidences) {
+      this.$store
+      .dispatch("getAllResidences")
+    } else {
+      this.$store
+      .dispatch("getResidences")
+    }
+  },
+  computed: {
+    residences() {
+      return this.$store.getters.getResidences
+    }
   },
   props: {
     myResidences: {
@@ -89,28 +92,25 @@ export default {
       type: Boolean,
       default: false
     },
-    residences: []
   },
   
   methods: {
     deleteResidence(residence) {
       this.$store
-        .dispatch("deleteResidence", {
-          id: residence.id
-        })
-        .then(
-          this.updateR()
-        );
+      .dispatch("deleteResidence", residence)
     },
     showEditForm(residence) {
-      eventBus.$emit("show-edit", residence)
+      console.log("edit klik")
+      console.log(residence.type)
+      this.$store.commit("setResidence", residence)
+      this.$store.commit("setEdit", true)
+      //eventBus.$emit("show-edit", residence)
       this.$emit("show-form")
     },
-    updateR(){
-      this.$store
-      .dispatch("getResidences")
-      .then(response => (this.residences = response));
-    }
+    view(residence){
+      this.$store.commit("setResidence", residence)
+      this.$router.push({ path: "/view_residence" })
+    },
   },
   
 };
@@ -120,8 +120,10 @@ export default {
 
 h4 {
   margin-top: 40px;
-  font-family: "Lucida Console", Monaco, monospace;
-  font-weight: lighter;
+}
+
+#residences_cards {
+    padding: 10px;
 }
 
 </style>
