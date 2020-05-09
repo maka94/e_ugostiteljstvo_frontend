@@ -8,12 +8,24 @@ axios.defaults.baseURL = "http://localhost:8000/";
 
 const store = new Vuex.Store({
   state: {
-    token: localStorage.getItem("access_token") || null
+    token: localStorage.getItem("access_token") || null,
+    residences: [],
+    residence: {type: Object},
+    edit: false
   },
   getters: {
     loggedIn(state) {
       return state.token !== null;
     },
+    getResidences(state) {
+      return state.residences
+    },
+    getResidence(state) {
+      return state.residence
+    },
+    getEdit(state) {
+      return state.edit
+    }
   },
   mutations: {
     retriveToken(state, token) {
@@ -23,6 +35,18 @@ const store = new Vuex.Store({
       state.token = null
       location.reload()
     },
+    setResidences(state, res){
+      state.residences = res
+    },
+    setResidence(state, residence) {
+      state.residence = residence
+    },
+    addResidence(state, residence) {
+      state.residences.push(residence)
+    },
+    setEdit(state, edit) {
+      state.edit = edit
+    }
   },
   actions: {
     retriveToken(context, credentials) {
@@ -112,6 +136,8 @@ const store = new Vuex.Store({
           axios
             .get("/residences/")
             .then(response => {
+              const res = response.data
+              context.commit("setResidences", res)
               resolve(response.data);
             })
             .catch(error => {
@@ -127,6 +153,8 @@ const store = new Vuex.Store({
           axios
             .get("/residences/all")
             .then(response => {
+              const res = response.data
+              context.commit("setResidences", res)
               resolve(response.data);
             })
             .catch(error => {
@@ -143,6 +171,7 @@ const store = new Vuex.Store({
         axios
           .delete("/residences/" + data.id + "/")
           .then(response => {
+            context.commit("deleteResidence", data)
             resolve(response.data);
             toast.success("Residence deleted!");
           })
@@ -166,6 +195,7 @@ const store = new Vuex.Store({
             description: data.description
           })
           .then(response => {
+            context.dispatch("getResidences")
             resolve(response);
             toast.success("Residence successfully saved!")
           })
@@ -189,6 +219,7 @@ const store = new Vuex.Store({
             description: data.description
           })
           .then(response => {
+            context.dispatch("getResidences")
             resolve(response);
             toast.success("Your changes are saved!")
           })
