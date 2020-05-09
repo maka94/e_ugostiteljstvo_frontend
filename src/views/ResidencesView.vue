@@ -18,21 +18,21 @@
           <mdb-btn gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
         </mdb-col>
       </mdb-row>
-      <AddResidence v-show="visible"  @cancel-add="cancel" /> <!-- @update-residences="updateR" -->
-      <Residences :myResidences="myResidences" :residences="residences" @show-form="showAddResidence"/>
+      <Residence v-show="visible"  @cancel-add="cancel" /> 
+      <Residences :myResidences="myResidences"  @show-form="showAddResidence"/> <!-- :residences="residences" -->
   </mdb-container>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import AddResidence from "@/components/AddResidence.vue";
+import Residence from "@/components/Residence.vue";
 import Residences from "@/components/Residences.vue"
 import { mdbContainer, mdbIcon, mdbBtn, mdbRow, mdbCol } from 'mdbvue'
 export default {
   components: {
     mdbContainer,
     Navbar,
-    AddResidence,
+    Residence,
     Residences,
     mdbIcon,
     mdbBtn,
@@ -43,14 +43,19 @@ export default {
     return {
       myResidences: true, //za dugmice 
       visible: false,
-      residences: []
+      //residences: []
     }
   },
-  mounted() {
+  /*computed: {
+    residences() {
+      return this.$store.getters.getResidences
+    }
+  },
+  created() { //bilo je mounted
     this.$store
       .dispatch("getResidences")
-      .then(response => (this.residences = response));
-  },
+      //.then(response => (this.residences = response));
+  }, */
   methods: {
     showAddResidence(){
       this.visible = true
