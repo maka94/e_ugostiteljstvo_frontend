@@ -11,7 +11,8 @@ const store = new Vuex.Store({
     token: localStorage.getItem("access_token") || null,
     residences: [],
     residence: {type: Object},
-    edit: false
+    edit: false,
+    reservations: []
   },
   getters: {
     loggedIn(state) {
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
     },
     getEdit(state) {
       return state.edit
+    },
+    getReservations(state) {
+      return state.reservations
     }
   },
   mutations: {
@@ -46,6 +50,9 @@ const store = new Vuex.Store({
     },
     setEdit(state, edit) {
       state.edit = edit
+    },
+    setReservations(state, reservations) {
+      state.reservations = reservations
     }
   },
   actions: {
@@ -256,6 +263,39 @@ const store = new Vuex.Store({
             reject(error);
           });
       });
+    },
+    create_reservation(context, data) {
+      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      return new Promise((resolve, reject) => {
+        axios.post("reservations/", {
+          residence: data.id,
+          date_from: data.date_from,
+          date_to: data.date_to
+        })
+        .then(response =>{
+          toast.success("Reservation successfully created!")
+          resolve(response.data)
+        })
+        .catch(error => {
+          toast.error(error.response.data);
+          reject(error);
+        })
+      })
+    },
+    getReservations(context) {
+      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      return new Promise((resolve, reject) => {
+        axios
+          .get("/reservations/")
+          .then(response => {
+            context.commit("setReservations", response.data)
+            resolve(response.data);
+          })
+          .catch(error => {
+            toast.error(error.response.data.detail);
+            reject(error);
+          });
+      })
     }
   },
   modules: {}
