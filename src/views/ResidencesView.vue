@@ -18,7 +18,7 @@
           <mdb-btn gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
         </mdb-col>
       </mdb-row>
-      <Residence v-show="visible"  @cancel-add="cancel" /> 
+      <Residence v-show="visible"  @cancel-add="cancel" class="animated zoomIn"/> 
       <Residences :myResidences="myResidences"  @show-form="showAddResidence"/> <!-- :residences="residences" -->
   </mdb-container>
 </template>
@@ -58,6 +58,7 @@ export default {
   }, */
   methods: {
     showAddResidence(){
+      this.$store.commit("setResidence", null)
       this.visible = true
     },
     cancel(){
