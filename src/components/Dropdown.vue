@@ -32,7 +32,7 @@ export default {
       this.$router.push({ name: "residences" });
     },
     showReservations(){
-      console.log("Show reservations")
+      this.$router.push({ name: "reservations" })
     },
     showProfile(){
       this.$router.push({ name: "profile" });
