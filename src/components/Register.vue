@@ -1,6 +1,31 @@
 <template>
     <div>
-        <form action="#" @submit="validate">
+        <mdb-container fluid>
+      <mdb-row>
+        <mdb-col col="4"></mdb-col>
+        <mdb-col col="4">
+          <mdb-card id="register">
+            <mdb-card-body>
+                <form action="#" @submit="validate">
+                  <p class="h4 text-center mb-4">Register</p>
+                  <div class="grey-text">
+                      <mdb-input label="Enter first name" icon="user" type="text" name="firstname" id="firstname" v-model="firstname"/>
+                      <mdb-input label="Enter last name" icon="user" type="text" name="lastname" id="lastname" v-model="lastname"/>
+                    <mdb-input label="Enter username" icon="user" type="text" name="username" id="username" v-model="username"/>
+                    <mdb-input label="Enter your e-mail" icon="at" type="email" name="email" id="email" v-model="email"/>
+                    <mdb-input label="Create password" icon="lock" type="password" name="password" id="password" v-model="password" />
+                  </div>
+                  <div class="text-center">
+                    <mdb-btn gradient="mean-fruit" type="submit" class="rounded">Create account</mdb-btn>
+                  </div>
+                </form>
+              </mdb-card-body>
+          </mdb-card>
+        </mdb-col>
+        <mdb-col col="4"></mdb-col>
+      </mdb-row>
+    </mdb-container>
+       <!-- <form action="#" @submit="validate">
             <h2 class="login-heading">Register</h2>
 
               <p v-if="errors.length">
@@ -34,12 +59,22 @@
             <p>
                 <input type="submit" value="Submit">
             </p>
-        </form>
+        </form>-->
     </div>
 </template>
 
 <script>
+import { mdbContainer, mdbRow, mdbCol, mdbCard, mdbCardBody, mdbInput, mdbBtn } from 'mdbvue';
 export default {
+    components: {
+        mdbContainer,
+        mdbRow, 
+        mdbCol,
+        mdbCard, 
+        mdbCardBody, 
+        mdbInput, 
+        mdbBtn,
+    },
     data() {
         return {
             firstname: '',
@@ -96,24 +131,10 @@ export default {
 </script>
 
 <style scoped>
-    .form-group {
-        display: flex;
-        align-items: flex-start;
-        position: absolute;
+    .card{
+        padding: 5%;
+        margin: 55px;
         width: 100%;
-        top: 40px;
-        left: 40%;
-        z-index: 1;  
-    }
-
-    .login-heading{
-        text-align: center;
-        
-    }
-
-    .form-item{
-        position: center;
-        justify-content: center;
-    }
+}
 </style>
 
