@@ -12,7 +12,9 @@ const store = new Vuex.Store({
     residences: [],
     residence: {type: Object},
     edit: false,
-    reservations: []
+    reservations: [],
+    reservation: {type: Object},
+    images: []
   },
   getters: {
     loggedIn(state) {
@@ -29,6 +31,12 @@ const store = new Vuex.Store({
     },
     getReservations(state) {
       return state.reservations
+    },
+    getReservation(state) {
+      return state.reservation
+    },
+    getImages(state) {
+      return state.images
     }
   },
   mutations: {
@@ -53,6 +61,12 @@ const store = new Vuex.Store({
     },
     setReservations(state, reservations) {
       state.reservations = reservations
+    },
+    setReservation(state, reservation) {
+      state.reservation = reservation
+    },
+    setImages(state, images) {
+      state.images = images
     }
   },
   actions: {
@@ -178,7 +192,7 @@ const store = new Vuex.Store({
         axios
           .delete("/residences/" + data.id + "/")
           .then(response => {
-            context.commit("deleteResidence", data)
+            context.dispatch("getResidences")
             resolve(response.data);
             toast.success("Residence deleted!");
           })
