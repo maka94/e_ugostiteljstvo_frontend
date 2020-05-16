@@ -11,7 +11,7 @@
                         <mdb-input label="Address" icon="map-marker-alt" type="text" name="address" v-model="residence.address" disabled/>
                         <mdb-input label="Town" icon="city" type="text" name="town" v-model="residence.town" disabled/>
                         <mdb-input label="Country" icon="globe-europe" type="text" name="country" v-model="residence.country" disabled/>
-                        <mdb-input label="Price" icon="dollar-sign" type="text" name="price" v-model="residence.price" disabled/>
+                        <mdb-input label="Price per day" icon="dollar-sign" type="text" name="price" v-model="residence.price" disabled/>
                         <mdb-input label="Bed number" icon="bed" type="number" name="bed_number"  v-model="residence.bed_number" disabled/>
                         <mdb-input icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" v-model="residence.description" disabled/>
                     </mdb-col>
@@ -51,6 +51,8 @@
                                     <vc-date-picker v-model="range" mode="range" is-inline/>
                                 </mdb-col>
                                 <mdb-col class="btn-center">
+                                    <mdb-input label="Number of days:" type="number" size="sm" v-model="days" style="width:30%; left: 30%;" />
+                                    <mdb-input label="Total:" type="number" size="sm" v-model="total_price" style="width:30%; left: 30%" />
                                     <mdb-btn gradient="morpheus-den" type="button" v-on:click="reserve" class="rounded">Create reservation</mdb-btn>
                                 </mdb-col>
                             </mdb-row>
@@ -77,6 +79,12 @@ export default {
     computed: {
         residence() {
             return this.$store.getters.getResidence
+        },
+        days () {
+            return Math.floor(( Date.parse(this.range.end) - Date.parse(this.range.start) ) / 86400000); 
+        },
+        total_price() {
+            return this.days*this.residence.price
         }
     }, 
     data() {
@@ -84,8 +92,7 @@ export default {
             range: {
                 start: new Date(),
                 end: new Date()
-            },
-            //id: residence.id
+            }
         }
     },
     methods: {
