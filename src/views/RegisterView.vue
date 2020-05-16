@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
   .bg {
-    background-image: url("../assets/land_page_background.jpg");
+    background-image: url("../assets/login-background.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
