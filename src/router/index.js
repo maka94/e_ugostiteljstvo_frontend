@@ -6,6 +6,7 @@ import RegisterView from "../views/RegisterView.vue";
 import ResidencesView from "../views/ResidencesView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import CreateReservationView from "../views/CreateReservationView.vue";
+import ReservationsView from "../views/ReservationsView.vue";
 
 Vue.use(VueRouter);
 
@@ -54,6 +55,14 @@ const routes = [
     path: "/view_residence",
     name: "view_residence",
     component: CreateReservationView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "my_reservations",
+    name: "reservations",
+    component: ReservationsView,
     meta: {
       requiresAuth: true
     }
