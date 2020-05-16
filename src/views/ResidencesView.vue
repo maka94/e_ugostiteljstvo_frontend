@@ -46,19 +46,9 @@ export default {
       //residences: []
     }
   },
-  /*computed: {
-    residences() {
-      return this.$store.getters.getResidences
-    }
-  },
-  created() { //bilo je mounted
-    this.$store
-      .dispatch("getResidences")
-      //.then(response => (this.residences = response));
-  }, */
   methods: {
     showAddResidence(){
-      this.$store.commit("setResidence", null)
+      //this.$store.commit("setResidence", null)
       this.visible = true
     },
     cancel(){
