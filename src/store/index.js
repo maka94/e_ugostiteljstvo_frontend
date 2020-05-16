@@ -148,6 +148,45 @@ const store = new Vuex.Store({
         });
       }
     },
+    updateProfile(context, data) {
+      axios.defaults.headers.common["Authorization"] =
+        "Token " + context.state.token;
+        return new Promise((resolve, reject) => {
+          axios.put("/profile", {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            username: data.username,
+            email: data.email
+          })
+          .then(response => {
+            resolve(response.data)
+            console.log(response.data)
+          })
+          .catch(error => {
+            toast.error(error.response.data.detail);
+            reject(error);
+          })
+        })
+    },
+    changePassword(context, data) {
+      axios.defaults.headers.common["Authorization"] =
+        "Token " + context.state.token;
+        return new Promise((resolve, reject) => {
+          axios.post("/change_password", {
+            old_password: data.old_password,
+            new_password: data.new_password,
+            confirm_new_password: data.confirm,
+          })
+          .then(response => {
+            toast.success("Password is successfully changed!")
+            resolve(response.data)
+          })
+          .catch(error => {
+            toast.error(error.response.data.detail);
+            reject(error);
+          })
+        })
+    },
     getResidences(context) {
       axios.defaults.headers.common["Authorization"] =
         "Token " + context.state.token;
@@ -159,6 +198,7 @@ const store = new Vuex.Store({
             .then(response => {
               const res = response.data
               context.commit("setResidences", res)
+              
               resolve(response.data);
             })
             .catch(error => {
@@ -176,6 +216,7 @@ const store = new Vuex.Store({
             .then(response => {
               const res = response.data
               context.commit("setResidences", res)
+              context.dispatch("getResidenceImages", res)
               resolve(response.data);
             })
             .catch(error => {
@@ -184,6 +225,35 @@ const store = new Vuex.Store({
             });
         });
       }
+    },
+    getResidenceImages(context, residences){
+      var img ;
+      var images = [];
+      residences.forEach(myFunction) 
+      function myFunction(value){
+        if(value.images.length > 0){
+          img = value.images
+          img.forEach(getImage)
+        }
+      }
+      function getImage(value) {
+        //images.push(value.image)
+        axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+        return new Promise((resolve, reject) => {
+          axios.get("/residences/download/"+value.image)
+          .then(response => {
+            images.push(response.data)
+            console.log(response.data)
+            resolve(response)
+          })
+          .catch(error => {
+            toast.error(error.response)
+            reject(error)
+          })
+        })
+      }
+      context.commit("setImages", images)
+      console.log(context.getImages)
     },
     deleteResidence(context, data) {
       axios.defaults.headers.common["Authorization"] =
@@ -303,6 +373,22 @@ const store = new Vuex.Store({
           .get("/reservations/")
           .then(response => {
             context.commit("setReservations", response.data)
+            resolve(response.data);
+          })
+          .catch(error => {
+            toast.error(error.response.data.detail);
+            reject(error);
+          });
+      })
+    },
+    cancelReservation(context, data) {
+      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      return new Promise((resolve, reject) => {
+        axios
+          .delete("/reservations/"+data.id)
+          .then(response => {
+            context.dispatch("getReservations")
+            toast.success("Your reservation is successfully cancelled!")
             resolve(response.data);
           })
           .catch(error => {
