@@ -1,6 +1,8 @@
 <template>
-    <div class="bg" overlay = "black-strong">
-        <div class="overlay"></div>
+    <div>
+        <div class="bg" overlay = "black-strong">
+            <div class="overlay"></div>
+        </div>
         <Navbar />
         <MyProfile />
     </div>
