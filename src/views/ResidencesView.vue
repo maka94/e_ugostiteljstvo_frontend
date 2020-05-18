@@ -19,7 +19,7 @@
         </mdb-col>
       </mdb-row>
       <Residence v-show="visible"  @cancel-add="cancel" class="animated zoomIn"/> 
-      <Residences :myResidences="myResidences"  @show-form="showAddResidence"/> <!-- :residences="residences" -->
+      <Residences :myResidences="myResidences"  @show-form="showAddResidence" style="padding: 20px"/> <!-- :residences="residences" -->
   </mdb-container>
 </template>
 
