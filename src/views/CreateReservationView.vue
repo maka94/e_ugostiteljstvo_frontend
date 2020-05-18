@@ -59,13 +59,25 @@
                         </mdb-container>
                     </mdb-col>
                 </mdb-row>
+                <mdb-row>
+                    <mdb-col col="1"></mdb-col>
+                    <mdb-col col="10">
+                        <h4>Gallery</h4>
+                        <mdb-carousel id="images" :interval="8000" slide :items="items" controlls indicators></mdb-carousel>
+                    </mdb-col>
+                    <mdb-col col="1"></mdb-col>
+                </mdb-row>
+                <mdb-row>
+               
+                </mdb-row>
             </mdb-container>
     </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue"
-import { mdbContainer, mdbRow, mdbCol, mdbInput, mdbIcon, mdbBtn } from 'mdbvue';
+
+import { mdbContainer, mdbRow, mdbCol, mdbInput, mdbIcon, mdbBtn, mdbCarousel } from 'mdbvue';
 export default {
     components: {
         Navbar,
@@ -74,7 +86,8 @@ export default {
         mdbCol,
         mdbInput,
         mdbIcon,
-        mdbBtn
+        mdbBtn,
+        mdbCarousel,
     },
     computed: {
         residence() {
@@ -85,7 +98,18 @@ export default {
         },
         total_price() {
             return this.days*this.residence.price
-        }
+        },
+        items() {
+            var images =  []
+            this.residence.images.forEach(getImage)
+            function getImage(value) {
+                console.log(value.image)
+                var image  = {img:true, src: "http://localhost:8000/residences/download/"+value.image, mask: "rgba-purple-slight"}
+                images.push(image)
+            }
+            return images
+        },
+       
     }, 
     data() {
         return {
@@ -148,7 +172,7 @@ export default {
 
     hr {
         width: 50%;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.3);
     }
 
     #r_view {
@@ -167,5 +191,15 @@ export default {
         bottom:0;                          
         left: 25%;
     }
-   
+    
+    #images {
+        margin: auto;
+    }
+
+    h4 {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        margin-top: 10px;
+    }
 </style>
