@@ -7,7 +7,7 @@
             <mdb-card>
               <mdb-view hover>
 						    <a href="#!">
-							    <mdb-card-image src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap"></mdb-card-image>
+							    <mdb-card-image class="image" :src="`http://localhost:8000/residences/download/${residence.images[0].image}`" alt="Card image cap"></mdb-card-image>
 							    <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
 						    </a>
 					    </mdb-view>
@@ -72,7 +72,7 @@ export default {
   created() {
     if(this.allResidences) {
       this.$store
-      .dispatch("getAllResidences")
+      .dispatch("getAllResidences");
     } else {
       this.$store
       .dispatch("getResidences")
@@ -124,6 +124,10 @@ h4 {
 
 #residences_cards {
     padding: 10px;
+}
+
+.image {
+  height: 180px;
 }
 
 </style>
