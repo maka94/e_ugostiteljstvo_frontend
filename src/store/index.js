@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     edit: false,
     reservations: [],
     reservation: {type: Object},
-    images: []
+    //images: []
   },
   getters: {
     loggedIn(state) {
@@ -35,9 +35,9 @@ const store = new Vuex.Store({
     getReservation(state) {
       return state.reservation
     },
-    getImages(state) {
+    /*getImages(state) {
       return state.images
-    }
+    }*/
   },
   mutations: {
     retriveToken(state, token) {
@@ -216,7 +216,8 @@ const store = new Vuex.Store({
             .then(response => {
               const res = response.data
               context.commit("setResidences", res)
-              context.dispatch("getResidenceImages", res)
+              
+              //context.dispatch("getResidenceImages", res)
               resolve(response.data);
             })
             .catch(error => {
@@ -225,35 +226,6 @@ const store = new Vuex.Store({
             });
         });
       }
-    },
-    getResidenceImages(context, residences){
-      var img ;
-      var images = [];
-      residences.forEach(myFunction) 
-      function myFunction(value){
-        if(value.images.length > 0){
-          img = value.images
-          img.forEach(getImage)
-        }
-      }
-      function getImage(value) {
-        //images.push(value.image)
-        axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
-        return new Promise((resolve, reject) => {
-          axios.get("/residences/download/"+value.image)
-          .then(response => {
-            images.push(response.data)
-            console.log(response.data)
-            resolve(response)
-          })
-          .catch(error => {
-            toast.error(error.response)
-            reject(error)
-          })
-        })
-      }
-      context.commit("setImages", images)
-      console.log(context.getImages)
     },
     deleteResidence(context, data) {
       axios.defaults.headers.common["Authorization"] =
@@ -287,6 +259,9 @@ const store = new Vuex.Store({
           })
           .then(response => {
             context.dispatch("getResidences")
+            var residence_id = response.data.id
+            //console.log(images.get("ap1.7.jpg"))
+            context.dispatch("uploadImages", [residence_id, data.images])
             resolve(response);
             toast.success("Residence successfully saved!")
           })
@@ -295,6 +270,23 @@ const store = new Vuex.Store({
             toast.error("Error while creating residence!")
           });
       });
+    },
+    uploadImages(context, args) {
+      var id = args[0]
+      var form_data = args[1]
+      console.log(id+" "+form_data)
+      form_data.set("residence_id", id)
+      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      return new Promise((resolve, reject) => {
+        axios.post("/residences/upload_images", form_data)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          toast.error(error)
+          reject(error)
+        })
+      })
     },
     editResidence(context, data){
       axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
