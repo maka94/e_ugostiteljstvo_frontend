@@ -34,6 +34,7 @@
                             <mdb-input v-if="!edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
                             <mdb-input v-if="!edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="bed_number" required/>
                             <mdb-input v-if="!edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="description" required/>
+                            <input v-if="!edit" type="file" id="images" multiple v-on:change="handleFileUploads">
                         </div>
                         <mdb-row>
                             <mdb-col xs="12" sm="6" md="4">
@@ -85,6 +86,7 @@ export default {
             price: "",
             bed_number: "",
             description: "",
+            files: []
         };
     },
     computed: {
@@ -100,19 +102,32 @@ export default {
             this.$emit("cancel-add")
             this.$store.commit("setResidence", null)
             this.$store.commit("setEdit", false)
+            this.files = []
         },
         saveResidence(){
             if(!this.edit){
-            this.$store.dispatch("createResidence", {
-                type: this.type,
-                address: this.address,
-                town: this.town,
-                country: this.country,
-                price: this.price,
-                bed_number: this.bed_number,
-                description: this.description
-            })
-            this.$emit("cancel-add")
+                var formData = new FormData()
+
+                this.files.forEach(function(file) {
+                    console.log(file);
+                    console.log("2222222222222")
+                    formData.set(file.name, file)
+                })
+
+                // console.log(formData.get("ap1.7.jpg"))
+               
+
+                this.$store.dispatch("createResidence", {
+                    type: this.type,
+                    address: this.address,
+                    town: this.town,
+                    country: this.country,
+                    price: this.price,
+                    bed_number: this.bed_number,
+                    description: this.description,
+                    images: formData
+                })
+                this.$emit("cancel-add")
             }else{
                 this.$store.dispatch("editResidence", {
                 id: this.residence.id,
@@ -129,6 +144,12 @@ export default {
                 this.$emit("cancel-add")
             }
         },
+        handleFileUploads() {
+            var images = document.getElementById("images")
+            for(var i = 0; i < images.files.length; i++){
+                this.files.push(images.files[i])
+            }
+        }
       
     }
 }
@@ -136,7 +157,9 @@ export default {
 
 <style>
     #add_residence{
-        margin-top: 50px;
+        /*margin-top: 50px;*/
+        margin: auto;
+        width: 500px;
         z-index: 1;
     }
     #type{
@@ -150,5 +173,9 @@ export default {
         width: 50%;
     }
     
+    .rounded {
+        height: 60px;
+        width: 140px;
+    }
    
 </style>
