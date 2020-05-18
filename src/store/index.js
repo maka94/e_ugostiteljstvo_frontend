@@ -14,7 +14,6 @@ const store = new Vuex.Store({
     edit: false,
     reservations: [],
     reservation: {type: Object},
-    //images: []
   },
   getters: {
     loggedIn(state) {
@@ -35,9 +34,6 @@ const store = new Vuex.Store({
     getReservation(state) {
       return state.reservation
     },
-    /*getImages(state) {
-      return state.images
-    }*/
   },
   mutations: {
     retriveToken(state, token) {
