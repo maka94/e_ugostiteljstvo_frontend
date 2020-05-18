@@ -13,7 +13,8 @@ import router from "./router";
 import VueRouter from 'vue-router'
 import store from "./store";
 import VCalendar from 'v-calendar';
-import { setupCalendar} from 'v-calendar'
+import { setupCalendar} from 'v-calendar';
+
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
@@ -25,6 +26,7 @@ Vue.use(VCalendar, {
 setupCalendar({
   componentPrefix: 'vc'
 });
+
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
