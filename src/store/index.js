@@ -205,7 +205,7 @@ const store = new Vuex.Store({
       }
     },
     getAllResidences(context) {
-      if (context.getters.loggedIn) {
+    
         return new Promise((resolve, reject) => {
           axios
             .get("/residences/all")
@@ -221,7 +221,7 @@ const store = new Vuex.Store({
               reject(error);
             });
         });
-      }
+      
     },
     deleteResidence(context, data) {
       axios.defaults.headers.common["Authorization"] =
@@ -309,7 +309,7 @@ const store = new Vuex.Store({
       });
     },
     searchResidences(context, data){
-      axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
+      //axios.defaults.headers.common["Authorization"] = "Token " + context.state.token;
       const axiosParams = new URLSearchParams()
       axiosParams.append('date_from', data.date_from)
       axiosParams.append('date_to', data.date_to)
