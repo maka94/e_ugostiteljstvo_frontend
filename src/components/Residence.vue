@@ -28,13 +28,16 @@
                             <mdb-input v-if="edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="residence.price" required/>
                             <mdb-input v-if="edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="residence.bed_number" required/>
                             <mdb-input v-if="edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="residence.description" required/>
-                            <mdb-input v-if="!edit" label="Enter address" icon="map-marker-alt" type="text" name="address" id="address" v-model="address" required/>
                             <mdb-input v-if="!edit" label="Enter town" icon="city" type="text" name="town" id="town" v-model="town" required/>
                             <mdb-input v-if="!edit" label="Enter country" icon="globe-europe" type="text" name="country" id="country" v-model="country" required/>
                             <mdb-input v-if="!edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
                             <mdb-input v-if="!edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="bed_number" required/>
                             <mdb-input v-if="!edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="description" required/>
                             <input v-if="!edit" type="file" id="images" multiple v-on:change="handleFileUploads">
+                        </div>
+                        <div id="map">
+                            <p> GOOGLE </p>
+                            <google-map />
                         </div>
                         <mdb-row>
                             <mdb-col xs="12" sm="6" md="4">
@@ -63,7 +66,8 @@
 
 <script>
 import { mdbContainer, mdbRow, mdbCol, mdbCard, mdbCardBody, mdbInput, mdbBtn, mdbIcon } from 'mdbvue';
-//import {eventBus} from "../main";
+import GoogleMap from "@/components/GoogleMap.vue";
+
 export default {
     name: "Residence",
     components: {
@@ -75,6 +79,7 @@ export default {
         mdbCard,
         mdbCardBody,
         mdbIcon,
+        GoogleMap
     },
     data(){
         return {
@@ -96,6 +101,7 @@ export default {
         residence() {
             return this.$store.getters.getResidence
         },
+       
     },
     methods:{
         cancel() {
