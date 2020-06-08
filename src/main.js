@@ -14,6 +14,7 @@ import VueRouter from 'vue-router'
 import store from "./store";
 import VCalendar from 'v-calendar';
 import { setupCalendar} from 'v-calendar';
+import * as VueGoogleMaps from "vue2-google-maps";
 
 
 Vue.config.productionTip = false;
@@ -26,7 +27,12 @@ Vue.use(VCalendar, {
 setupCalendar({
   componentPrefix: 'vc'
 });
-
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDifPNi1HicMuiNDLQSAcvPH6uS-ceYnH4",
+    libraries: "places" 
+  }
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
