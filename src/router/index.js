@@ -15,9 +15,9 @@ const routes = [
     path: "/",
     name: "home",
     component: LandPageView,
-    /*meta: {
+    meta: {
       requiresAuth: true
-    }*/
+    }
   },
   {
     path: "/login",
