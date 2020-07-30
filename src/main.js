@@ -18,6 +18,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 Vue.use(Vuelidate);
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter)
