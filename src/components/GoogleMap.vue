@@ -43,7 +43,10 @@ export default {
       currentPlace: null
     };
   },
-
+  props: {
+    lat: Number,
+    lon: Number
+  },
   mounted() {
     this.geolocate();
   },
@@ -73,10 +76,21 @@ export default {
     },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+        if(this.lat && this.lon) {
+          const marker = {
+            lat: this.lat,
+            lng: this.lon
+          };
+
+          this.markers.push({ position: marker });
+          this.center = marker;
+        } else {
+            this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+        }
+       
       });
     }
   }

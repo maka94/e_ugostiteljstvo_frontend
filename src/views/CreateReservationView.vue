@@ -68,7 +68,7 @@
                     <mdb-col col="1"></mdb-col>
                 </mdb-row>
                 <mdb-row>
-               
+                    <google-map v-bind:lat="Number(this.residence.lat)" v-bind:lon="Number(this.residence.lon)"></google-map>
                 </mdb-row>
             </mdb-container>
     </div>
@@ -76,6 +76,7 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue"
+import GoogleMap from "@/components/GoogleMap.vue";
 
 import { mdbContainer, mdbRow, mdbCol, mdbInput, mdbIcon, mdbBtn, mdbCarousel } from 'mdbvue';
 export default {
@@ -88,6 +89,7 @@ export default {
         mdbIcon,
         mdbBtn,
         mdbCarousel,
+        GoogleMap
     },
     computed: {
         residence() {
