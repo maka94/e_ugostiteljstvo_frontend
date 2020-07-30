@@ -62,11 +62,17 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
+        if(this.markers.length > 0){
+          this.markers = [];
+        }
+        if(this.places.length > 0) {
+          this.places = [];
+        }
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;
-        //console.log(this.currentPlace.address_components)
-        this.currentPlace = null;
+        console.log(this.currentPlace.geometry.location.lat() + " " + this.currentPlace.geometry.location.lng())
+        //this.currentPlace = null;
         console.log(this.places[0].address_components[0].long_name)
         console.log(this.places[0].address_components[1].long_name)
         console.log(this.places[0].address_components[2].long_name)
