@@ -7,7 +7,7 @@
             <mdb-card>
               <mdb-view hover>
 						    <a href="#!">
-							    <mdb-card-image class="image" :src="`http://localhost:8000/residences/download/${residence.images[0].image}`" alt="Card image cap"></mdb-card-image>
+							    <mdb-card-image class="image" :src="`http://localhost:8000/residences/download/${residence.images[0].image}`" alt="Card image"></mdb-card-image>
 							    <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
 						    </a>
 					    </mdb-view>
