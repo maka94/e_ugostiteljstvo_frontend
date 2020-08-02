@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import { mdbIcon } from 'mdbvue';
+import {  mdbBtn } from 'mdbvue';
 export default {
   name: "GoogleMap",
   components: {
-      mdbIcon
+      mdbBtn
   },
   data() {
     return {
-      center: { lat: 45.508, lng: -73.587 },
+      center: { lat: 44.787389, lng: 20.447308 },
       markers: [],
       places: [],
       currentPlace: null
@@ -42,7 +42,8 @@ export default {
   },
   props: {
     lat: Number,
-    lon: Number
+    lon: Number,
+    reservation: Boolean
   },
   mounted() {
     this.geolocate();
