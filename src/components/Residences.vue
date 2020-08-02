@@ -16,13 +16,13 @@
                 <mdb-card-text> {{residence.town}}, {{residence.country}} </mdb-card-text>
                 <mdb-row>
                   <mdb-col xs="12" sm="6" md="4">
-                    <mdb-btn v-if="myResidences" size="lg" v-on:click="showEditForm(residence)" gradient="tempting-azure" rounded><mdb-icon icon="edit"/></mdb-btn>
+                    <mdb-btn v-if="myResidences" size="sm" v-on:click="showEditForm(residence)" gradient="tempting-azure" rounded><mdb-icon icon="edit"/></mdb-btn>
                   </mdb-col>
                   <mdb-col>
-                    <mdb-btn v-if="allResidences" size="lg" v-on:click="view(residence)" gradient="tempting-azure" rounded><mdb-icon icon="eye"/></mdb-btn>
+                    <mdb-btn v-if="allResidences" size="sm" v-on:click="view(residence)" gradient="tempting-azure" rounded><mdb-icon icon="eye"/></mdb-btn>
                   </mdb-col>
-                  <mdb-col xs="12" sm="6" md="4" class="mr-3">
-                    <mdb-btn v-if="myResidences" size="lg" v-on:click="deleteResidence(residence)" gradient="young-passion" rounded><mdb-icon icon="times-circle"/></mdb-btn>
+                  <mdb-col xs="12" sm="6" md="4">
+                    <mdb-btn v-if="myResidences" size="sm" v-on:click="deleteResidence(residence)" gradient="young-passion" rounded><mdb-icon icon="times-circle"/></mdb-btn>
                   </mdb-col>
                 </mdb-row>
 					    </mdb-card-body>
