@@ -247,6 +247,8 @@ const store = new Vuex.Store({
           .post("/residences/", {
             type: data.type,
             address: data.address,
+            lat: data.lat,
+            lon: data.lon,
             town: data.town,
             country: data.country,
             price: data.price,
