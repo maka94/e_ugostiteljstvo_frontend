@@ -2,62 +2,112 @@
     <div>
         <mdb-container>
             <mdb-row>
-                <mdb-col col="4"></mdb-col>
-                <mdb-col col="4">
                 <mdb-card id="add_residence">
                     <mdb-card-body>
                         <form action="#" @submit.prevent="saveResidence" id="new_Residence">
-                        <p class="h4 text-center mb-4" id="add_title">Add new residence</p>
-                        <div class="grey-text">
-                            <div class="row" v-if="!edit">
-                                <div class="col-md-4">
-                                    <mdb-icon icon="home" />Choose type:
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="browser-default custom-select" name="type" id="type" v-model="type" required>
-                                        <option value="Room">Room</option>
-                                        <option value="Apartment">Apartment</option>
-                                        <option value="House">House</option>
-                                    </select>
-                                </div>
+                            <p class="h4 text-center mb-4" id="add_title" v-if="!edit">Add new residence</p>
+                            <p class="h4 text-center mb-4" id="add_title" v-if="edit">Edit residence</p>
+                            <div class="grey-text">
+                                <mdb-row>
+                                    <div id="map" v-if="!edit">
+                                        <google-map @added="onAddressAdd" />
+                                    </div>
+                                </mdb-row>
+                                <br/>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <div class="row" v-if="!edit" style="width: 90%;">
+                                            <div class="col-md-4">
+                                                <mdb-icon icon="home" style="width: 70;"/>Choose type:
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select class="browser-default custom-select" name="type" id="type" v-model="type" required>
+                                                    <option value="Room">Room</option>
+                                                    <option value="Apartment">Apartment</option>
+                                                    <option value="House">House</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <input v-if="!edit" type="file" id="images" multiple v-on:change="handleFileUploads">
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Type" icon="home" type="text" name="type" id="edittype" v-model="residence.type" disabled/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Address" icon="map-marker-alt" type="text" name="address" id="editaddress" v-model="residence.address" disabled/>
+                                    </mdb-col>  
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Town" icon="city" type="text" name="town" id="edittown" v-model="residence.town" disabled/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Country" icon="globe-europe" type="text" name="country" id="editcountry" v-model="residence.country" disabled/>
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="residence.price" required/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="residence.bed_number" required/>
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-input style="width: 100%;" v-if="edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="residence.description" required/>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" label="Enter address" icon="map-marker-alt" type="text" name="address" id="address" v-model="address" disabled/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" label="Enter town" icon="city" type="text" name="town" id="town" v-model="town" disabled/>
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" label="Enter Country" icon="globe-europe" type="text" name="country" id="country" v-model="country" disabled/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="bed_number" required/>
+                                    </mdb-col>
+                                    <mdb-col>
+                                        <mdb-input v-if="!edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="description" required/>
+                                    </mdb-col>
+                                </mdb-row>
+                                <mdb-row>
+                                    <mdb-col>
+                                        
+                                    </mdb-col>
+                                    <mdb-col></mdb-col>
+                                </mdb-row>
+                                
+                                <mdb-row>
+                                    <mdb-col xs="12" sm="6" md="4">
+                                        <div class="text-center">
+                                            <mdb-btn  gradient="tempting-azure" type="submit" class="rounded"><mdb-icon icon="check-circle"/>Save</mdb-btn>
+                                        </div>
+                                    </mdb-col>
+                                    <mdb-col xs="12" sm="6" md="4"></mdb-col>
+                                    <mdb-col xs="12" sm="6" md="4">
+                                        <div class="text-center">
+                                            <mdb-btn gradient="young-passion" type="button" class="rounded" v-on:click="cancel"><mdb-icon icon="times-circle"/>Cancel</mdb-btn>
+                                        </div>
+                                    </mdb-col>
+                                </mdb-row>
                             </div>
-                            <mdb-input v-if="edit" label="Type" icon="home" type="text" name="type" id="edittype" v-model="residence.type" disabled/>
-                            <mdb-input v-if="edit" label="Address" icon="map-marker-alt" type="text" name="address" id="editaddress" v-model="residence.address" disabled/>
-                            <mdb-input v-if="edit" label="Town" icon="city" type="text" name="town" id="edittown" v-model="residence.town" disabled/>
-                            <mdb-input v-if="edit" label="Country" icon="globe-europe" type="text" name="country" id="editcountry" v-model="residence.country" disabled/>
-                            <mdb-input v-if="edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="residence.price" required/>
-                            <mdb-input v-if="edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="residence.bed_number" required/>
-                            <mdb-input v-if="edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="residence.description" required/>
-                            <mdb-input v-if="!edit" label="Enter town" icon="city" type="text" name="town" id="town" v-model="town" required/>
-                            <mdb-input v-if="!edit" label="Enter country" icon="globe-europe" type="text" name="country" id="country" v-model="country" required/>
-                            <mdb-input v-if="!edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
-                            <mdb-input v-if="!edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="bed_number" required/>
-                            <mdb-input v-if="!edit" icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" id="description" v-model="description" required/>
-                            <input v-if="!edit" type="file" id="images" multiple v-on:change="handleFileUploads">
-                        </div>
-                        <div id="map">
-                            <p> GOOGLE </p>
-                            <google-map />
-                        </div>
-                        <mdb-row>
-                            <mdb-col xs="12" sm="6" md="4">
-                                <div class="text-center">
-                                    <mdb-btn  gradient="tempting-azure" type="submit" class="rounded"><mdb-icon icon="check-circle"/>Save</mdb-btn>
-                                </div>
-                            </mdb-col>
-                            <mdb-col xs="12" sm="6" md="4"></mdb-col>
-                            <mdb-col xs="12" sm="6" md="4">
-                                <div class="text-center">
-                                    <mdb-btn gradient="young-passion" type="button" class="rounded" v-on:click="cancel"><mdb-icon icon="times-circle"/>Cancel</mdb-btn>
-                                </div>
-                            </mdb-col>
-                        </mdb-row>
                         </form>
                     </mdb-card-body>
                 </mdb-card>
-                </mdb-col>
-                <mdb-col col="4">
-                </mdb-col>
             </mdb-row>
         </mdb-container>
     </div>
@@ -165,8 +215,9 @@ export default {
     #add_residence{
         /*margin-top: 50px;*/
         margin: auto;
-        width: 500px;
+        width: 1000px;
         z-index: 1;
+        border-radius: 10%;
     }
     #type{
         width: 103%;
@@ -182,6 +233,13 @@ export default {
     .rounded {
         height: 60px;
         width: 140px;
+    }
+
+    #map{
+        margin: auto;
+        width: 500px;
+        background-color: rgba(76, 175, 80, 0.2);
+        padding: 10px;
     }
    
 </style>
