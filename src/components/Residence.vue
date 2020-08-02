@@ -135,6 +135,8 @@ export default {
         return {
             id: "",
             type: "",
+            lat: "",
+            lon: "",
             address: "",
             town: "",
             country: "",
@@ -160,6 +162,14 @@ export default {
             this.$store.commit("setEdit", false)
             this.files = []
         },
+        onAddressAdd(value) {
+            console.log(value.address)
+            this.lat = value.lat
+            this.lon = value.lng
+            this.town = value.town
+            this.country = value.country
+            this.address = value.address
+        },
         saveResidence(){
             if(!this.edit){
                 var formData = new FormData()
@@ -176,6 +186,8 @@ export default {
                 this.$store.dispatch("createResidence", {
                     type: this.type,
                     address: this.address,
+                    lat: this.lat,
+                    lon: this.lon,
                     town: this.town,
                     country: this.country,
                     price: this.price,
