@@ -2,21 +2,18 @@
   <div>
     <div>
         <div class="grey-text">
-            <mdb-icon icon="map-marker-alt" />
-                <label>
-                    <gmap-autocomplete placeholder="Enter address"
-                    @place_changed="setPlace">
-                    </gmap-autocomplete>
-                    <button @click="addMarker">Add</button>
-                </label>
-                <br/>
+            <gmap-autocomplete placeholder="Enter address" style="width: 81%;"
+            @place_changed="setPlace">
+            </gmap-autocomplete>
+          <mdb-btn id="addBtn" size = "sm" @click="addMarker">Add</mdb-btn>
+          <br/>
         </div>
     </div>
     <br>
     <gmap-map
       :center="center"
       :zoom="12"
-      style="width:100%;  height: 400px;"
+      style="width:400px; height: 200px; margin: auto;"
     >
       <gmap-marker
         :key="index"
@@ -102,3 +99,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  #addBtn {
+    font-size: 11px;
+    text-align: center;
+  }
+</style>
