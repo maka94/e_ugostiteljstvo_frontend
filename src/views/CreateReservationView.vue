@@ -68,7 +68,7 @@
                     <mdb-col col="1"></mdb-col>
                 </mdb-row>
                 <mdb-row>
-                    <google-map v-bind:lat="Number(this.residence.lat)" v-bind:lon="Number(this.residence.lon)"></google-map>
+                    <google-map v-bind:lat="Number(this.residence.lat)" v-bind:lon="Number(this.residence.lon)" v-bind:reservation="true"></google-map>
                 </mdb-row>
             </mdb-container>
     </div>
