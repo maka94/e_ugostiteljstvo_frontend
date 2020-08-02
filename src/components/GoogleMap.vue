@@ -69,13 +69,11 @@ export default {
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;
-        console.log(this.currentPlace.geometry.location.lat() + " " + this.currentPlace.geometry.location.lng())
-        //this.currentPlace = null;
-        console.log(this.places[0].address_components[0].long_name)
-        console.log(this.places[0].address_components[1].long_name)
-        console.log(this.places[0].address_components[2].long_name)
-        console.log(this.places[0].address_components[3].long_name)
-        console.log(this.places[0].address_components[4].long_name)
+        
+        var address = this.places[0].address_components[1].long_name + " " + this.places[0].address_components[0].long_name;
+        this.$emit('added', {lat: this.currentPlace.geometry.location.lat(), lng:this.currentPlace.geometry.location.lng(), 
+          address: address,
+          town: this.places[0].address_components[2].long_name, country: this.places[0].address_components[4].long_name})
       }
     },
     geolocate: function() {
