@@ -265,7 +265,7 @@ const store = new Vuex.Store({
           })
           .catch(error => {
             reject(error);
-            toast.error("Error while creating residence!")
+            toast.error("Error while creating residence!");
           });
       });
     },
