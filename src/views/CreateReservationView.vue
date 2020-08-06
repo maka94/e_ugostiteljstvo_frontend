@@ -1,9 +1,9 @@
 <template>
-    <mdb-container>
-            <Navbar />
-            <br/>
+    <mdb-container fluid style="width: 90%;">
+        <Navbar />
+        <br/>
             <mdb-row>
-                <mdb-col lg="5" md="5" s="5" xs="12" >
+                <mdb-col lg="5" md="5" s="5" xs="12" style="">
                     <mdb-carousel id="images" :interval="8000" slide :items="items" controlls indicators></mdb-carousel>
                 </mdb-col>
                 <mdb-col lg="2"></mdb-col>
