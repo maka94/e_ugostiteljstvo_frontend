@@ -1,8 +1,5 @@
 <template>
-  <mdb-container fluid>
-    <div class="bg" overlay="black-strong">
-      <div class="overlay"></div>
-   </div>
+  <mdb-container>
       <Navbar />
       <mdb-row>
         <mdb-col col="4"></mdb-col>
