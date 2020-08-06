@@ -1,8 +1,5 @@
 <template>
-  <div fluid>
-    <div class="bg" overlay="black-strong">
-    <div class="overlay"></div>
-    </div>
+  <mdb-container fluid style="width: 90%;">
     <Navbar />
     <div id="search">
       <Search /> 
@@ -11,18 +8,21 @@
       <Residences :allResidences="allResidences"  /> 
     </div>
     
-  </div>
+  </mdb-container>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue"
 import Search from "@/components/Search.vue"
 import Residences from "@/components/Residences.vue"
+import { mdbContainer } from 'mdbvue'
+
 export default {
   components: {
     Navbar,
     Search,
     Residences,
+    mdbContainer
   },
   data() {
     return {
@@ -33,34 +33,12 @@ export default {
 </script>
 
 <style scoped>
-.bg {
-    background-image: url("../assets/land_page_background.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background-attachment: fixed;
-  }
-
-  .bg .overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    opacity: .2;
-    background: #8585ad;
-}
 
 #search {
-  margin-top: 15px;
+  margin: auto;
+  background-color: rgba(0, 150, 136, 0.1);
+  width: 78%;
+  border-radius: 8px;
 }
 
 #res {
