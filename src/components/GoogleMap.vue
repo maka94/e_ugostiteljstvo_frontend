@@ -3,17 +3,17 @@
     <div>
         <div class="grey-text">
             <gmap-autocomplete placeholder="Enter address" style="width: 81%;"
-            @place_changed="setPlace">
+            @place_changed="setPlace" v-if="!reservation">
             </gmap-autocomplete>
-          <mdb-btn id="addBtn" size = "sm" @click="addMarker">Add</mdb-btn>
+          <mdb-btn id="addBtn" size = "sm" @click="addMarker" v-if="!reservation">Add</mdb-btn>
           <br/>
         </div>
     </div>
     <br>
     <gmap-map
       :center="center"
-      :zoom="12"
-      style="width:400px; height: 200px; margin: auto;"
+      :zoom="13"
+      style="width:100%; height: 200px; margin: auto;"
     >
       <gmap-marker
         :key="index"
