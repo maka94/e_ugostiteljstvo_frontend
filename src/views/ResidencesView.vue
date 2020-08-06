@@ -15,7 +15,7 @@
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4">
-          <mdb-btn gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
+          <mdb-btn size="lg" gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
         </mdb-col>
       </mdb-row>
       <Residence v-show="visible"  @cancel-add="cancel" class="animated zoomIn"/> 
@@ -60,10 +60,8 @@ export default {
 
 <style scoped>
    #add_new{
-    right: 200px;
-    width: 40%;
-    
-    }
+     margin: auto;
+  }
  .bg {
     background-image: url("../assets/land_page_background.jpg");
     height: 100%;
