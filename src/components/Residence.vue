@@ -224,6 +224,7 @@ export default {
 </script>
 
 <style>
+
     #add_residence{
         /*margin-top: 50px;*/
         margin: auto;
@@ -252,6 +253,7 @@ export default {
         width: 500px;
         background-color: rgba(76, 175, 80, 0.2);
         padding: 10px;
+        border-radius: 5%;
     }
    
 </style>
