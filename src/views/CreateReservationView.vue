@@ -52,7 +52,7 @@
                     <mdb-input icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" v-model="residence.description" disabled/>
                 </mdb-col>
             </mdb-row>
-            
+            <br> 
             <mdb-row>
                 <mdb-col col id="create" class="animated slideInRight">
                     <mdb-container id="info">
@@ -79,24 +79,27 @@
                                 <mdb-icon icon="at" size="lg" style="margin-top:25px" />
                             </mdb-col>
                             <mdb-col col="10">
-                                <mdb-input label="E-mail:" type="text" name="conatct" v-model="residence.owner.email" size="sm" disabled style="width:50%"/>
+                                <mdb-input label="Contact:" type="text" name="conatct" v-model="residence.owner.email" size="sm" disabled style="width:50%"/>
                             </mdb-col>
-                        </mdb-row>    
+                        </mdb-row>  
                     </mdb-container> 
                     
                 </mdb-col>
             </mdb-row>
-                <mdb-row>
-                    <mdb-col col="1"></mdb-col>
-                    <mdb-col col="10">
-                        
-                    </mdb-col>
-                    <mdb-col col="1"></mdb-col>
-                </mdb-row>
-                <mdb-row>
-                    <google-map v-bind:lat="Number(this.residence.lat)" v-bind:lon="Number(this.residence.lon)" v-bind:reservation="true"></google-map>
-                </mdb-row>
-            
+            <br>
+            <h5 style="text-align: center;">Location</h5>
+            <hr>
+            <mdb-row>
+                <mdb-col>
+                    <google-map
+                     v-bind:lat="Number(this.residence.lat)" 
+                     v-bind:lon="Number(this.residence.lon)" 
+                     v-bind:reservation="true"
+                     style="width:100%;">
+                     </google-map>
+                </mdb-col>
+            </mdb-row>
+            <br><hr>
     </mdb-container>
 </template>
 
@@ -167,7 +170,6 @@ export default {
         width: 100%;
         height: 51%;
         margin-top: 5px;
-        background-color: rgba(255, 255, 255, 0.4);
         border-radius: 15px;
         text-align: center;
         padding: 5px;
@@ -185,7 +187,7 @@ export default {
 
     #create {
         border-radius: 10px;
-        background-color: rgba(244, 67, 54, 0.3);
+        background-color: rgba(0, 150, 136, 0.1);
         text-align: center;
         
     }
