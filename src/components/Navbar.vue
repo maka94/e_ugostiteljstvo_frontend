@@ -1,6 +1,6 @@
 <template>
 <div>
-  <mdb-navbar color="rgba-grey-slight"  light id="nav">
+  <mdb-navbar color="teal lighten-5"  light id="nav">
     <mdb-navbar-brand >
       <img src="../assets/logo.png" alt="" v-on:click ="home">
     </mdb-navbar-brand>
