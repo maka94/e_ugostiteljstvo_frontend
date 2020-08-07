@@ -1,10 +1,9 @@
 <template>
-  <mdb-container>
+  <mdb-container fluid style="width: 90%;">
       <Navbar />
       <mdb-row>
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4">
-          <h4 class="text-center" style="margin-top: 10px">My Residences</h4>
         </mdb-col>
         <mdb-col col="4"></mdb-col>
       </mdb-row>
@@ -12,9 +11,12 @@
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4">
-          <mdb-btn size="lg" gradient="mean-fruit" class="rounded" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
+          <br>
+          <mdb-btn size="lg" id="add_new" v-on:click="showAddResidence"><mdb-icon icon="plus"  />Add new</mdb-btn>
         </mdb-col>
       </mdb-row>
+      <br>
+      <hr style="width: 50%;">
       <Residence v-show="visible"  @cancel-add="cancel" class="animated zoomIn"/> 
       <Residences :myResidences="myResidences"  @show-form="showAddResidence" style="padding: 20px"/> <!-- :residences="residences" -->
   </mdb-container>
@@ -58,6 +60,8 @@ export default {
 <style scoped>
    #add_new{
      margin: auto;
+     border-radius: 100px;
+     background-color: #4db6ac;
   }
  .bg {
     background-image: url("../assets/land_page_background.jpg");
