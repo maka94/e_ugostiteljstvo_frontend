@@ -37,7 +37,6 @@ export default {
 #search {
   margin: auto;
   background-color: rgba(0, 150, 136, 0.1);
-  width: 78%;
   border-radius: 8px;
 }
 
