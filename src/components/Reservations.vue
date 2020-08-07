@@ -2,26 +2,44 @@
     <div>
         <Reservation v-if="visible" @close="close"/>
         <mdb-container v-for="reservation in reservations" :key="reservation.id">
-            <mdb-row style="margin-top: 5px">
+            <mdb-row style="margin-top: 5px" v-if="reservations.length > 0">
                 <div class="reservation" v-if="!visible">
-                    <h4>{{ reservation.residence.type }} in <b>{{ reservation.residence.town }} </b></h4>
+                    <mdb-icon icon="calendar-day"/><h4>{{ reservation.residence.type }} in {{ reservation.residence.town }},</h4>
                     <h6>{{ reservation.residence.country }}</h6>
                     <mdb-row>
                         <mdb-col>
-                            <mdb-btn v-on:click="view(reservation)">View</mdb-btn>
-                        </mdb-col>
-                        <mdb-col>
-                            <mdb-btn gradient="young-passion" rounded v-on:click="cancelReservation(reservation)">Cancel</mdb-btn>
+                            <div class="float-left">
+                                <mdb-btn class="btn" size="md" v-on:click="view(reservation)">View</mdb-btn>
+                            </div>
+                            <div class="float-right">
+                                <mdb-btn class="btn" gradient="young-passion" size="md" v-on:click="cancelReservation(reservation)">Cancel</mdb-btn>
+                            </div>
                         </mdb-col>
                     </mdb-row>
                 </div> 
+            </mdb-row>
+        </mdb-container>
+        <mdb-container>
+            <mdb-row v-if="reservations.length == 0">
+                <mdb-col>
+                    <br>
+                    <div id="message">
+                        You don't have any reservations yet. 
+                    </div>
+                    <hr style="width: 60%;">
+                    <div class="d-flex justify-content-center">
+                        <mdb-btn size="lg" v-on:click="home" id="btnF">Find something nice</mdb-btn>
+                    </div>
+                    
+                </mdb-col>
+                
             </mdb-row>
         </mdb-container>
     </div>
 </template>
 
 <script>
-import { mdbContainer, mdbRow, mdbCol, mdbBtn } from 'mdbvue';
+import { mdbContainer, mdbRow, mdbCol, mdbBtn, mdbIcon } from 'mdbvue';
 import Reservation from "@/components/Reservation.vue"
 export default {
     components: {
@@ -29,6 +47,7 @@ export default {
         mdbRow, 
         mdbCol, 
         mdbBtn,
+        mdbIcon,
         Reservation
     },
     data() {
@@ -54,6 +73,9 @@ export default {
         },
         close: function() {
             this.visible = false
+        },
+        home(){
+            this.$router.push({ name: "home" })
         }
     }
 }
@@ -61,9 +83,29 @@ export default {
 
 <style scoped>
     .reservation {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(0, 150, 136, 0.1);
         border-radius: 15px;
         width: 100%;
         padding: 10px;
+    }
+
+    .btn {
+        border-radius: 5px;
+        width: 130px;
+    }
+
+    #message {
+        margin: auto;
+        text-align: center;
+        text-decoration: darkgrey;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 24px;
+        background-color: #eeeeee ;
+        border-radius: 10px;
+    }
+
+    #btnF {
+        width: 300px;
+        background-color: #64ffda ;
     }
 </style>
