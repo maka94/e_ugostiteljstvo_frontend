@@ -226,11 +226,14 @@ export default {
 <style>
 
     #add_residence{
-        /*margin-top: 50px;*/
         margin: auto;
         width: 1000px;
         z-index: 1;
-        border-radius: 10%;
+        border-radius: 10px;
+
+        border: 1px solid rgb(221, 221, 221);
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     }
     #type{
         width: 103%;
