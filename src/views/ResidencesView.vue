@@ -3,12 +3,6 @@
       <Navbar />
       <mdb-row>
         <mdb-col col="4"></mdb-col>
-        <mdb-col col="4">
-        </mdb-col>
-        <mdb-col col="4"></mdb-col>
-      </mdb-row>
-      <mdb-row>
-        <mdb-col col="4"></mdb-col>
         <mdb-col col="4"></mdb-col>
         <mdb-col col="4">
           <br>
