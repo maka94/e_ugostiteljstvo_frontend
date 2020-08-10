@@ -84,6 +84,8 @@ export default {
 <style scoped>
     .reservation {
         background-color: rgba(0, 150, 136, 0.1);
+        border: 1px solid rgb(221, 221, 221);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
         border-radius: 15px;
         width: 100%;
         padding: 10px;
