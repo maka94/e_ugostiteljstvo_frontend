@@ -1,20 +1,19 @@
 <template>
-    <div>
-        <div class="bg" overlay = "black-strong">
-            <div class="overlay"></div>
-        </div>
+    <mdb-container fluid style="width: 90%;">
         <Navbar />
         <MyProfile />
-    </div>
+    </mdb-container>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
 import MyProfile from "@/components/MyProfile.vue";
+import { mdbContainer } from 'mdbvue'
 export default {
     components: {
         Navbar,
-        MyProfile
+        MyProfile,
+        mdbContainer
     }
 }
 </script>
