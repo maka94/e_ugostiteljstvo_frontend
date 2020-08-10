@@ -1,45 +1,56 @@
 <template>
-    <div>
-        <mdb-container fluid style="padding: 10px;">
-            <div id="change_pass" v-if="change_password" class="animated slideInUp">
-                <mdb-input label="Enter your old password" v-model="password.old_password" type="password"></mdb-input>
-                <mdb-input label="Enter new password" v-model="password.new_password" type="password"> </mdb-input>
-                <mdb-input label="Confirm new password" v-model="password.confirm" type="password"> </mdb-input>
-                    
-                <mdb-btn gradient="young-passion" v-on:click="change_password=false" style="width: 30%">Close</mdb-btn>
-                <mdb-btn v-on:click="modal=true, change_password=false" style="left: 30%;">Save changes</mdb-btn>  
-            </div>
-            <mdb-row>
-               
-                <mdb-col>
-                    slika
-                </mdb-col>
-                <mdb-col>
-                    <div class="grey-text">
-                        <mdb-input label="First name" v-model="profile.first_name"></mdb-input>
-                        <mdb-input label="Last name" v-model="profile.last_name"> </mdb-input>
-                        <mdb-input label="Username" v-model="profile.username"> </mdb-input>
-                        <mdb-input label="E-mail" v-model="profile.email"> </mdb-input>
-                    </div> 
-                    <mdb-btn type="button" gradient="aqua" v-on:click="modal=true, update=true" id="edit_btn">Edit profile</mdb-btn> 
-                    <mdb-btn type="button" gradient="amy-crisp" v-on:click="change_password=true" id="edit_btn">Change password</mdb-btn>
-                    <mdb-modal :show="modal" @close="modal = false">
-                        <mdb-modal-header>
-                            <mdb-modal-title>Are you sure you want to save changes?</mdb-modal-title>
-                        </mdb-modal-header>
-                        <mdb-modal-footer>
-                            <mdb-btn color="secondary" @click.native="modal = false, update=false">Close</mdb-btn>
-                            <mdb-btn color="primary" v-on:click="updateProfile">Save changes</mdb-btn>
-                        </mdb-modal-footer>
-                    </mdb-modal>   
-                </mdb-col>
-            </mdb-row>
-        </mdb-container>
-    </div>
+    <mdb-container fluid style="width: 90%;">
+        <br>
+        <mdb-row>
+            <div id="change_pass" v-if="change_password" class="animated zoomIn">
+            <mdb-input label="Enter your old password" v-model="password.old_password" type="password"></mdb-input>
+            <mdb-input label="Enter new password" v-model="password.new_password" type="password"> </mdb-input>
+            <mdb-input label="Confirm new password" v-model="password.confirm" type="password"> </mdb-input>
+            <div class="clearfix">
+                <mdb-btn size="md" style="width: 40%;" gradient="young-passion" v-on:click="change_password=false" class="btn float-left">Close</mdb-btn>
+                <mdb-btn size="md" style="width: 40%;" v-on:click="modal=true, change_password=false" class="btn float-right">Save changes</mdb-btn>  
+            </div>    
+        </div>
+        </mdb-row>
+        <mdb-row v-if="!change_password">
+            <mdb-col>
+                <mdb-icon icon="user-circle" class="cyan-text pr-3" size="5x"/>
+                <br>
+                <br>
+                <h4>User details</h4>
+                <hr style="width: 70%;">
+                <div class="grey-text">
+                    <mdb-input label="First name" v-model="profile.first_name"></mdb-input>
+                    <mdb-input label="Last name" v-model="profile.last_name"> </mdb-input>
+                    <mdb-input label="Username" v-model="profile.username"> </mdb-input>
+                    <mdb-input label="E-mail" v-model="profile.email"> </mdb-input>
+                </div> 
+            </mdb-col>
+            <mdb-col>
+                <mdb-row>
+                    <mdb-btn color="mdb-color" v-on:click="modal=true, update=true" id="edit_btn">Edit profile</mdb-btn> 
+                </mdb-row>
+                <br>
+                <mdb-row>
+                    <mdb-btn color="blue-grey" v-on:click="change_password=true" id="pass_btn">Change password</mdb-btn>
+                </mdb-row>
+                <mdb-modal :show="modal" @close="modal = false">
+                    <mdb-modal-header>
+                        <mdb-modal-title>Are you sure you want to save changes?</mdb-modal-title>
+                    </mdb-modal-header>
+                    <mdb-modal-footer>
+                        <mdb-btn color="secondary" @click.native="modal = false, update=false">Close</mdb-btn>
+                        <mdb-btn color="primary" v-on:click="updateProfile">Save changes</mdb-btn>
+                    </mdb-modal-footer>
+                </mdb-modal>   
+            </mdb-col>
+        </mdb-row>
+        
+    </mdb-container>
 </template>
 
 <script>
-import { mdbContainer, mdbRow, mdbCol,  mdbInput, mdbBtn, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalFooter } from 'mdbvue';
+import { mdbContainer, mdbRow, mdbCol,  mdbInput, mdbBtn, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalFooter, mdbIcon } from 'mdbvue';
 import toast from "@/assets/js/services/toast";
 export default {
     name: "profile",
@@ -52,7 +63,8 @@ export default {
         mdbModal, 
         mdbModalHeader, 
         mdbModalTitle,
-        mdbModalFooter
+        mdbModalFooter,
+        mdbIcon
     },
     data() {
         return {
@@ -105,29 +117,37 @@ export default {
 
 <style scoped>
     .row{
-        margin-top: 150px;
         text-align: center;
     }
 
     .grey-text {
-        background-color: rgba(255, 235, 59, 0.3);
-        border-radius: 25px;
+        background-color: #fafafa;
+        border-radius: 15px;
         padding: 10px;
-        width: 70%;
+        border: 1px solid rgb(221, 221, 221);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     }
 
     #edit_btn {
-        right: 14%;
-        width: 30%;
+        border-radius: 100px;
+        width: 80%;
+        margin: auto;
+    }
+
+    #pass_btn {
+        border-radius: 100px;
+        width: 80%;
+        margin: auto;
     }
 
     #change_pass {
         background-color: rgba(255, 255, 255, 0.4);
-        border-radius: 20px;
+        border: 1px solid rgb(221, 221, 221);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        border-radius: 12px;
         width: 35%;
         height: 20%;
-        padding: 10px;
-        margin-top: 15px;
+        padding: 15px;
         margin: auto;
     }
    
