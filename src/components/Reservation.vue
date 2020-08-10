@@ -12,8 +12,10 @@
                         <mdb-input label="Price per day" icon="dollar-sign" type="text" name="price" v-model="reservation.residence.price" disabled/>
                         <mdb-input label="Total" icon="dollar-sign" type="text" name="price" v-model="reservation.price" disabled/>
                         
+                        <div class="d-flex justify-content-center">
+                            <mdb-btn v-on:click="close" style="width: 80%; border-radius: 15px;">Close</mdb-btn>
+                        </div>
                         
-                        <mdb-btn v-on:click="close">Close</mdb-btn>
                     </div>
                 </mdb-col>
                 <mdb-col>
@@ -30,12 +32,28 @@
                     <mdb-carousel id="images" :interval="8000" slide :items="items" controlls indicators></mdb-carousel>
                 </mdb-col>
             </mdb-row>
+            <br>
+            <h5 style="text-align: center;">Location</h5>
+            <hr style="width: 80%;">
+            <mdb-row>
+                <mdb-col>
+                    <google-map
+                     v-bind:lat="Number(this.reservation.residence.lat)" 
+                     v-bind:lon="Number(this.reservation.residence.lon)" 
+                     v-bind:reservation="true"
+                     style="width:100%;">
+                     </google-map>
+                </mdb-col>
+            </mdb-row>
+            <br>
+            
         </mdb-container>
     </div>
 </template>
 
 <script>
 import { mdbContainer, mdbRow, mdbCol, mdbBtn, mdbInput, mdbCarousel } from 'mdbvue';
+import GoogleMap from "@/components/GoogleMap.vue";
 export default {
     components: {
         mdbContainer,
@@ -43,7 +61,8 @@ export default {
         mdbCol,
         mdbBtn,
         mdbInput,
-        mdbCarousel
+        mdbCarousel,
+        GoogleMap
     },
     computed: {
         reservation() {
@@ -70,9 +89,11 @@ export default {
 
 <style scoped>
     #residence {
+        background-color: #fafafa;
+        border-radius: 15px;
         padding: 10px;
-        background-color: rgba(255, 255, 255, 0.4);
-        border-radius: 25px;
+        border: 1px solid rgb(221, 221, 221);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     }
 
     h5 {
@@ -84,9 +105,11 @@ export default {
     }
 
     #info {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(0, 150, 136, 0.1);
+        border: 1px solid rgb(221, 221, 221);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
         margin-bottom: 20px;
-        border-radius: 25px;
+        border-radius: 15px;
         padding: 10px;
     }
 
