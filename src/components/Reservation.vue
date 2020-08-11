@@ -9,7 +9,7 @@
                         <mdb-input label="From" icon="calendar" type="date" v-model="reservation.date_from" disabled />
                         <mdb-input label="To" icon="calendar" type="date" v-model="reservation.date_to" disabled />
                         <mdb-input label="Bed number" icon="bed" type="number" name="bed_number"  v-model="reservation.residence.bed_number" disabled/>
-                        <mdb-input label="Price per day" icon="dollar-sign" type="text" name="price" v-model="reservation.residence.price" disabled/>
+                        <mdb-input label="Price per night (€)" icon="dollar-sign" type="text" name="price" v-model="reservation.residence.price" disabled/>
                         <mdb-input label="Total" icon="dollar-sign" type="text" name="price" v-model="reservation.price" disabled/>
                         
                         <div class="d-flex justify-content-center">
