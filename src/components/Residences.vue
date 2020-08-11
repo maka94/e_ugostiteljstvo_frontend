@@ -1,8 +1,8 @@
 <template>
   <div>
     <mdb-container>
-      <mdb-row>
-        <mdb-col xs="12" md="4" v-for="residence in residences" :key="residence.id">
+      <mdb-row v-if="!this.$store.getters.getEdit">
+        <mdb-col xs="12" md="4" v-for="residence in residences" :key="residence.id" >
           <mdb-card-group deck id="residences_cards">
             <mdb-card>
               <mdb-view hover>

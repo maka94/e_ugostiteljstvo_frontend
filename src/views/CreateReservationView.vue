@@ -47,7 +47,7 @@
                     <mdb-input label="Address" icon="map-marker-alt" type="text" name="address" v-model="residence.address" disabled/>
                     <mdb-input label="Town" icon="city" type="text" name="town" v-model="residence.town" disabled/>
                     <mdb-input label="Country" icon="globe-europe" type="text" name="country" v-model="residence.country" disabled/>
-                    <mdb-input label="Price per night" icon="dollar-sign" type="text" name="price" v-model="residence.price" disabled/>
+                    <mdb-input label="Price per night (€)" icon="dollar-sign" type="text" name="price" v-model="residence.price" disabled/>
                     <mdb-input label="Bed number" icon="bed" type="number" name="bed_number"  v-model="residence.bed_number" disabled/>
                     <mdb-input icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" v-model="residence.description" disabled/>
                 </mdb-col>
