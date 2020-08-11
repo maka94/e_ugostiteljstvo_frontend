@@ -51,7 +51,7 @@
                                 </mdb-row>
                                 <mdb-row>
                                     <mdb-col>
-                                        <mdb-input v-if="edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="residence.price" required/>
+                                        <mdb-input v-if="edit" label="Enter price per night (€)" icon="dollar-sign" type="text" name="price" id="price" v-model="residence.price" required/>
                                     </mdb-col>
                                     <mdb-col>
                                         <mdb-input v-if="edit" label="Bed number" icon="bed" type="number" name="bed_number" id="bed_number" v-model="residence.bed_number" required/>
@@ -73,7 +73,7 @@
                                         <mdb-input v-if="!edit" label="Enter Country" icon="globe-europe" type="text" name="country" id="country" v-model="country" disabled/>
                                     </mdb-col>
                                     <mdb-col>
-                                        <mdb-input v-if="!edit" label="Enter price" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
+                                        <mdb-input v-if="!edit" label="Enter price per night (€)" icon="dollar-sign" type="text" name="price" id="price" v-model="price" required/>
                                     </mdb-col>
                                 </mdb-row>
                                 <mdb-row>
@@ -160,6 +160,7 @@ export default {
             this.$emit("cancel-add")
             this.$store.commit("setResidence", null)
             this.$store.commit("setEdit", false)
+            this.$store.commit("setAddNew", false)
             this.files = []
         },
         onAddressAdd(value) {
