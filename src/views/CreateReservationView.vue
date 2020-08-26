@@ -47,7 +47,25 @@
                     <mdb-input label="Address" icon="map-marker-alt" type="text" name="address" v-model="residence.address" disabled/>
                     <mdb-input label="Town" icon="city" type="text" name="town" v-model="residence.town" disabled/>
                     <mdb-input label="Country" icon="globe-europe" type="text" name="country" v-model="residence.country" disabled/>
-                    <mdb-input label="Price per night (€)" icon="dollar-sign" type="text" name="price" v-model="residence.price" disabled/>
+                    <mdb-row>
+                        
+                    <mdb-col col="7"> 
+                        <mdb-input label="Price per night (EUR)" icon="dollar-sign" type="text" id="price" name="price" v-model="residence.price" disabled/>
+                    </mdb-col>
+                    <mdb-col col="3" style="margin: auto; padding: 1px"> 
+                        <div class="grey-text">
+                            Convert to:
+                            <select class="browser-default custom-select" id="currency" v-model="currency" required>
+                                <option value="eur" selected>eur</option>
+                                <option value="rsd">rsd</option>
+                                <option value="usd">usd</option>
+                            </select>  
+                        </div>
+                    </mdb-col>
+                    <mdb-col col="2" style="margin: auto; padding: 1px;">
+                        <mdb-btn size="md" id="convert" v-on:click="convert()">Convert</mdb-btn>   
+                    </mdb-col>
+                    </mdb-row>
                     <mdb-input label="Bed number" icon="bed" type="number" name="bed_number"  v-model="residence.bed_number" disabled/>
                     <mdb-input icon="pencil-alt" wrapperClass="active-pink-textarea" type="textarea" label="Description" name="description" v-model="residence.description" disabled/>
                 </mdb-col>
@@ -105,7 +123,8 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue"
-import GoogleMap from "@/components/GoogleMap.vue";
+import GoogleMap from "@/components/GoogleMap.vue"
+import axios from 'axios'
 
 import { mdbContainer, mdbRow, mdbCol, mdbInput, mdbIcon, mdbBtn, mdbCarousel } from 'mdbvue';
 export default {
@@ -140,17 +159,52 @@ export default {
             }
             return images
         },
-       
     }, 
     data() {
         return {
             range: {
                 start: new Date(),
                 end: new Date()
-            }
+            },
+            currency: "",
         }
     },
     methods: {
+        convert: function(){
+            var apiKey = "43a2029326d47cd56e04";
+            
+            var amount = parseInt(document.getElementById("price").value);
+            var currency_from = document.getElementById("price").labels[0].innerHTML.split(" ")[3].substring(1, 4);
+            var currency_to = this.currency.toUpperCase();
+
+            if(currency_to == ""){
+                alert("You must chose currency!")
+            } else {
+            
+                var query = currency_from + '_' + currency_to;
+                var url = 'https://free.currconv.com/api/v7/convert?q='
+                + query + '&compact=ultra&apiKey=' + apiKey;
+
+                axios.get(url)
+                .then(response => {
+                    var rate = response.data[query];
+                    document.getElementById("price").value = amount*rate;
+
+		            if(currency_to == "RSD"){
+                        document.getElementById("price").labels[0].innerHTML = "Price per night (RSD)";
+                    }
+                    if(currency_to == "USD"){
+                        document.getElementById("price").labels[0].innerHTML = "Price per night (USD)";
+                    }
+                    if(currency_to == "EUR"){
+                        document.getElementById("price").labels[0].innerHTML = "Price per night (EUR)";
+                    }
+                }).catch(error => {
+                        alert("Error while conversion!")
+                        console.log(error);
+                    });
+            }  
+        },
         reserve: function() {
             console.log(this.range.start.getFullYear()+"-"+(this.range.start.getMonth()+1)+"-"+this.range.start.getDate())
             console.log(this.residence.id)
@@ -217,6 +271,14 @@ export default {
         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     }
 
-    
+    #convert {
+        border-radius: 12px;
+        width: 80%;
+    }
+
+    #currency {
+        width: 70%;
+        margin-right: 2px;
+    }
 
 </style>
