@@ -3,7 +3,7 @@
     <div>
         <div class="grey-text">
             <gmap-autocomplete placeholder="Enter address" style="width: 81%;"
-            @place_changed="setPlace" v-if="!reservation">
+            @place_changed="setPlace" v-if="!reservation" id="autocomplete">
             </gmap-autocomplete>
           <mdb-btn id="addBtn" size = "sm" @click="addMarker" v-if="!reservation">Add</mdb-btn>
           <br/>
@@ -69,11 +69,22 @@ export default {
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;
-        
-        var address = this.places[0].address_components[1].long_name + " " + this.places[0].address_components[0].long_name;
+
+        //console.log("lat: "+this.currentPlace.geometry.location.lat() + " lon: "+ this.currentPlace.geometry.location.lng())
+      
+        console.log(document.getElementById("autocomplete").value);
+        console.log(document.getElementById("autocomplete").value.split(",")[0])
+        console.log(document.getElementById("autocomplete").value.split(",")[1])
+        console.log(document.getElementById("autocomplete").value.split(",")[2])
+
+        var address = document.getElementById("autocomplete").value.split(",")[0];
+        var town = document.getElementById("autocomplete").value.split(",")[1];
+        var country = document.getElementById("autocomplete").value.split(",")[2];
+
         this.$emit('added', {lat: this.currentPlace.geometry.location.lat(), lng:this.currentPlace.geometry.location.lng(), 
           address: address,
-          town: this.places[0].address_components[2].long_name, country: this.places[0].address_components[4].long_name})
+          town: town, 
+          country: country})
       }
     },
     geolocate: function() {
